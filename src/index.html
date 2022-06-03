@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Trello by front-trello</title>
+    <link type="image/x-icon" href="./assets/favicon.ico" rel="shortcut icon">
     <link rel="stylesheet" href="./styles/index.scss">
-    <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/index.js" defer type="module"></script>
 </head>
 <body>
     <header class="header">
@@ -16,17 +17,19 @@
         <article class="main__desk">
             <header class="desk__header">
                 <h2 class="desk__header__title">Desk name</h2>
-                <p class="desk__header__description"></p>
+                <p class="desk__header__description">Desk description</p>
             </header>
-            <section class="desk__column">
-
-            </section>
-            <section class="desk__column">
-                
-            </section>
-            <section class="desk__column">
-                
-            </section>
+            <div class="desk__content">
+                <section class="desk__column">
+                    <h3>Column name</h3>
+                </section>
+                <section class="desk__column">
+                    <h3>Column name</h3>
+                </section>
+                <section class="desk__column">
+                    <h3>Column name</h3>
+                </section>
+            </div>
         </article>
     </main>
 </body>

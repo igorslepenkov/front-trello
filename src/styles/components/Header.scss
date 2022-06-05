@@ -1,5 +1,7 @@
 @use "../config/colors.scss";
 
+/* styles */
+
 .header {
 	display: flex;
 	justify-content: space-between;
@@ -23,4 +25,19 @@
 	font-size: 24px;
 	text-align: left;
 	color: colors.$colorWhite;
+}
+
+/* media queries */
+
+@media (max-width: 500px) {
+
+	.header__title {
+		font-weight: 500;
+		font-size: 18px;
+	}
+
+	#header__clock {
+		font-weight: 500;
+		font-size: 18px;
+	}
 }

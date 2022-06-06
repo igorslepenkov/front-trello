@@ -1,4 +1,4 @@
-export function displayCurrentTime () {
+function displayCurrentTime () {
 	const headerClock = document.querySelector("#header__clock");
 
 	const date = new Date ();
@@ -8,4 +8,5 @@ export function displayCurrentTime () {
 
 	headerClock.textContent = `${hours}:${minutes}:${seconds}`;
 }
- 
+
+export {displayCurrentTime};

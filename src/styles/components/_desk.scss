@@ -1,5 +1,6 @@
 @use "../config/colors.scss";
-
+@use "../config/templates.scss";
+@use "../config/mixins.scss";
 
 
 body {
@@ -21,14 +22,15 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	padding: 25px 25px 40px;
 	gap: 40px;
 	background: colors.$colorGrey;
 	border-radius: 10px;
 }
 
 .column__header {
+	box-sizing: border-box;
 	width: 100%;
+	padding: 30px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -47,10 +49,16 @@ body {
 	opacity: 0.8;
 }
 .column__content {
-}
-.column__button {
+	padding: 30px;
 }
 
+#btn-add-to-do {
+	@include mixins.columnBtn(colors.$colorBlue, colors.$colorWhite);
+}
+
+#btn-delete-all {
+	@include mixins.columnBtn(colors.$colorBlack, colors.$colorWhite);
+}
 
 /* media queries */
 

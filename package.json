@@ -1,7 +1,6 @@
 {
   "name": "parcel",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "parcel ./src/index.html",
@@ -16,5 +15,14 @@
   },
   "dependencies": {
     "uuid": "^8.3.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/igorslepenkov/front-trello.git"
+  },
+  "bugs": {
+    "url": "https://github.com/igorslepenkov/front-trello/issues"
+  },
+  "homepage": "https://github.com/igorslepenkov/front-trello#readme",
+  "description": ""
 }

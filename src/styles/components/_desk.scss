@@ -7,10 +7,6 @@ body {
 	background: linear-gradient(109.17deg, #126A85 1.08%, #9B34A5 115.97%);
 }
 
-.container {
-
-}
-
 .desk {
 	display: flex;
 	justify-content: space-between;
@@ -52,13 +48,32 @@ body {
 	padding: 30px;
 }
 
-#btn-add-to-do {
+#btn-add-todo {
 	@include mixins.columnBtn(colors.$colorBlue, colors.$colorWhite);
+}
+
+#btn-add-todo:hover {
+	@include mixins.columnBtn(colors.$colorDarkBlue, colors.$colorWhite);
+}
+
+#btn-add-todo:active {
+	@include mixins.columnBtn(colors.$colorDarkBlue, colors.$colorWhite);
+	box-shadow: inset 0px 0px 10px #00252A;
 }
 
 #btn-delete-all {
 	@include mixins.columnBtn(colors.$colorBlack, colors.$colorWhite);
 }
+
+#btn-delete-all:hover {
+	@include mixins.columnBtn(colors.$colorRichBlack, colors.$colorWhite);
+}
+
+#btn-delete-all:active {
+	@include mixins.columnBtn(colors.$colorRichBlack, colors.$colorWhite);
+	box-shadow: inset 0px 0px 10px #5F5E5E;
+}
+
 
 /* media queries */
 

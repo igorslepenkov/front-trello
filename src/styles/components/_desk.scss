@@ -5,20 +5,44 @@
 
 body {
 	background: linear-gradient(109.17deg, #126A85 1.08%, #9B34A5 115.97%);
+	height: 100vh;
 }
 
 .desk {
+	max-height: 80vh;
 	display: flex;
 	justify-content: space-between;
-	padding: 30px 100px;
+	padding: 5rem 5rem;
+	gap: 5rem;
+}
+
+.desk::-webkit-scrollbar {
+	width: 1rem;
+	
+}
+
+.desk::-webkit-scrollbar-track {
+	background: colors.$colorBlue;
+
+}
+
+.desk::-webkit-scrollbar-thumb {
+	background: colors.$colorRichBlack;
+}
+
+.desk::-webkit-scrollbar-thumb:hover {
+	background: colors.$colorBlack;
 }
 
 .desk__column {
-	min-width: 25%;
+	max-height: 90%;
+	width: 60rem;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	gap: 40px;
+	justify-content: space-between;
+	flex-shrink: 0;
+	gap: 4rem;
 	background: colors.$colorGrey;
 	border-radius: 10px;
 }
@@ -26,7 +50,7 @@ body {
 .column__header {
 	box-sizing: border-box;
 	width: 100%;
-	padding: 30px;
+	padding: 3rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -34,18 +58,53 @@ body {
 
 .column__title {
 	font-weight: 600;
-	font-size: 28px;
+	font-size: 2.8rem;
 	color: colors.$colorDarkGrey;
 	opacity: 0.8;
 }
+
 .column__counter {
 	font-weight: 600;
-	font-size: 28px;
+	font-size: 2.8rem;
 	color: colors.$colorDarkGrey;
 	opacity: 0.8;
 }
+
 .column__content {
-	padding: 30px;
+	max-height: 80%;
+	width: 80%;
+	margin: 1rem auto;
+	padding: 2rem;
+	display: flex;
+	flex-direction: column;
+	gap: 5rem;
+	overflow-y: auto;
+	overflow-x: hidden;
+	font-weight: 600;
+	font-size: 2.8rem;
+	opacity: 0.8;
+}
+
+.column__content::-webkit-scrollbar {
+	width: 1rem;
+	
+}
+
+.column__content::-webkit-scrollbar-track {
+	background: colors.$colorBlue;
+
+}
+
+.column__content::-webkit-scrollbar-thumb {
+	background: colors.$colorRichBlack;
+}
+
+.column__content::-webkit-scrollbar-thumb:hover {
+	background: colors.$colorBlack;
+}
+
+.card {
+	border: 2px solid black;
 }
 
 #btn-add-todo {
@@ -77,10 +136,25 @@ body {
 
 /* media queries */
 
-@media (max-width: 1000px) {
-
+@media (max-width: 1950px) {
 	.desk {
-		flex-direction: column;
-		gap: 20px;  
+		flex-wrap: nowrap;
+		overflow-y: hidden;
+		overflow-x: auto;
+	}
+}
+
+
+@media (max-width: 1350px) {
+
+	html {
+		font-size: 7px;
+	}
+}
+
+@media (max-width: 950px) {
+
+	html {
+		font-size: 5px;
 	}
 }

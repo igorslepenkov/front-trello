@@ -1,3 +1,3 @@
-import {displayCurrentTime} from "./components/_header.js";
+import {displayCurrentTime} from "./components/_clock.js";
 
-setInterval(displayCurrentTime, 10);
+setInterval(displayCurrentTime, 1000);

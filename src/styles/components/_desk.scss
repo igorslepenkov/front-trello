@@ -1,6 +1,16 @@
 @use "../config/colors.scss";
 @use "../config/mixins.scss";
+@use "../config/media.scss";
 
+html {
+	@include media.small {
+		font-size: 7px;
+	}
+	
+	@include media.extrasmall {
+		font-size: 5px;
+	}
+}
 
 body {
 	background: linear-gradient(109.17deg, #126A85 1.08%, #9B34A5 115.97%);
@@ -13,6 +23,11 @@ body {
 	justify-content: space-between;
 	padding: 5rem 5rem;
 	gap: 5rem;
+	@include media.small {
+		flex-wrap: nowrap;
+		overflow-y: hidden;
+		overflow-x: auto;
+	}
 }
 
 .desk::-webkit-scrollbar {
@@ -35,7 +50,7 @@ body {
 
 .desk__column {
 	max-height: 90%;
-	width: 60rem;
+	width: 30%;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -44,6 +59,9 @@ body {
 	gap: 4rem;
 	background: colors.$color_grey;
 	border-radius: 10px;
+	@include media.small {
+		width: 55rem;
+	}
 }
 
 .column__header {
@@ -57,14 +75,14 @@ body {
 
 .column__title {
 	font-weight: 600;
-	font-size: 2.8rem;
+	font-size: 2.4rem;
 	color: colors.$color_darkgrey;
 	opacity: 0.8;
 }
 
 .column__counter {
 	font-weight: 600;
-	font-size: 2.8rem;
+	font-size: 2.4rem;
 	color: colors.$color_darkgrey;
 	opacity: 0.8;
 }
@@ -80,7 +98,7 @@ body {
 	overflow-y: auto;
 	overflow-x: hidden;
 	font-weight: 600;
-	font-size: 2.8rem;
+	font-size: 2.4rem;
 	opacity: 0.8;
 }
 
@@ -133,27 +151,3 @@ body {
 }
 
 
-/* media queries */
-
-@media (max-width: 1950px) {
-	.desk {
-		flex-wrap: nowrap;
-		overflow-y: hidden;
-		overflow-x: auto;
-	}
-}
-
-
-@media (max-width: 1350px) {
-
-	html {
-		font-size: 7px;
-	}
-}
-
-@media (max-width: 950px) {
-
-	html {
-		font-size: 5px;
-	}
-}

@@ -1,0 +1,15 @@
+// tablets and smartphones
+@mixin extrasmall {
+	@media (max-width: 992px) {
+			@content;
+	}
+}
+
+// large tablets and small desktops
+@mixin small {
+	@media (max-width: 1366px) {
+			@content;
+	}
+}
+
+

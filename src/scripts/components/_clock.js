@@ -1,5 +1,5 @@
 function displayCurrentTime () {
-	const headerClock = document.querySelector("#header__clock");
+	const headerClock = document.querySelector("#clock");
 
 	const date = new Date ();
 	const hours = date.getHours().toString().padStart(2, "0");

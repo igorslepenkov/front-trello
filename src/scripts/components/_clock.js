@@ -1,12 +1,14 @@
-function displayCurrentTime () {
-	const headerClock = document.querySelector("#clock");
+function DigitalClock () {
 
-	const date = new Date ();
-	const hours = date.getHours().toString().padStart(2, "0");
-	const minutes = date.getMinutes().toString().padStart(2, "0");
-	const seconds = date.getSeconds().toString().padStart(2, "0");
+	this.date = new Date();
+	this.hours = this.date.getHours().toString().padStart(2, "0");
+	this.minutes = this.date.getMinutes().toString().padStart(2, "0");
+	this.seconds = this.date.getSeconds().toString().padStart(2, "0");
 
-	headerClock.textContent = `${hours}:${minutes}:${seconds}`;
+	this.renderClock = function () {
+		const headerClock = document.querySelector("#clock");
+		headerClock.textContent = `${this.hours}:${this.minutes}:${this.seconds}`;
+	}
 }
 
-export {displayCurrentTime};
+export {DigitalClock};

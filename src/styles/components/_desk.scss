@@ -1,5 +1,4 @@
 @use "../config/colors.scss";
-@use "../config/templates.scss";
 @use "../config/mixins.scss";
 
 
@@ -22,16 +21,16 @@ body {
 }
 
 .desk::-webkit-scrollbar-track {
-	background: colors.$colorBlue;
+	background: colors.$color_blue;
 
 }
 
 .desk::-webkit-scrollbar-thumb {
-	background: colors.$colorRichBlack;
+	background: colors.$color_richblack;
 }
 
 .desk::-webkit-scrollbar-thumb:hover {
-	background: colors.$colorBlack;
+	background: colors.$color_black;
 }
 
 .desk__column {
@@ -43,7 +42,7 @@ body {
 	justify-content: space-between;
 	flex-shrink: 0;
 	gap: 4rem;
-	background: colors.$colorGrey;
+	background: colors.$color_grey;
 	border-radius: 10px;
 }
 
@@ -59,14 +58,14 @@ body {
 .column__title {
 	font-weight: 600;
 	font-size: 2.8rem;
-	color: colors.$colorDarkGrey;
+	color: colors.$color_darkgrey;
 	opacity: 0.8;
 }
 
 .column__counter {
 	font-weight: 600;
 	font-size: 2.8rem;
-	color: colors.$colorDarkGrey;
+	color: colors.$color_darkgrey;
 	opacity: 0.8;
 }
 
@@ -91,16 +90,16 @@ body {
 }
 
 .column__content::-webkit-scrollbar-track {
-	background: colors.$colorBlue;
+	background: colors.$color_blue;
 
 }
 
 .column__content::-webkit-scrollbar-thumb {
-	background: colors.$colorRichBlack;
+	background: colors.$color_richblack;
 }
 
 .column__content::-webkit-scrollbar-thumb:hover {
-	background: colors.$colorBlack;
+	background: colors.$color_black;
 }
 
 .card {
@@ -108,28 +107,28 @@ body {
 }
 
 #btn-add-todo {
-	@include mixins.columnBtn(colors.$colorBlue, colors.$colorWhite);
+	@include mixins.columnBtn(colors.$color_blue, colors.$color_white);
 }
 
 #btn-add-todo:hover {
-	@include mixins.columnBtn(colors.$colorDarkBlue, colors.$colorWhite);
+	@include mixins.columnBtn(colors.$color_darkblue, colors.$color_white);
 }
 
 #btn-add-todo:active {
-	@include mixins.columnBtn(colors.$colorDarkBlue, colors.$colorWhite);
+	@include mixins.columnBtn(colors.$color_darkblue, colors.$color_white);
 	box-shadow: inset 0px 0px 10px #00252A;
 }
 
 #btn-delete-all {
-	@include mixins.columnBtn(colors.$colorBlack, colors.$colorWhite);
+	@include mixins.columnBtn(colors.$color_black, colors.$color_white);
 }
 
 #btn-delete-all:hover {
-	@include mixins.columnBtn(colors.$colorRichBlack, colors.$colorWhite);
+	@include mixins.columnBtn(colors.$color_richblack, colors.$color_white);
 }
 
 #btn-delete-all:active {
-	@include mixins.columnBtn(colors.$colorRichBlack, colors.$colorWhite);
+	@include mixins.columnBtn(colors.$color_richblack, colors.$color_white);
 	box-shadow: inset 0px 0px 10px #5F5E5E;
 }
 

@@ -3,30 +3,38 @@
 @use "../config/media.scss";
 
 html {
+	height: 100%;
+
 	@include media.small {
 		font-size: 7px;
 	}
-	
+
 	@include media.extrasmall {
 		font-size: 5px;
 	}
 }
 
 body {
+	height: 100%;
 	background: linear-gradient(109.17deg, #126A85 1.08%, #9B34A5 115.97%);
-	height: 100vh;
 }
 
 .desk {
-	max-height: 80vh;
+	height: 80%;
 	display: flex;
 	justify-content: space-between;
 	padding: 5rem 5rem;
 	gap: 5rem;
+
 	@include media.small {
 		flex-wrap: nowrap;
 		overflow-y: hidden;
 		overflow-x: auto;
+		height: 85%;
+	}
+
+	@include media.extrasmall {
+		height: 87%;
 	}
 }
 
@@ -49,16 +57,17 @@ body {
 }
 
 .desk__column {
-	max-height: 90%;
 	width: 30%;
+	max-height: 100%;
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start;
-	justify-content: space-between;
+	justify-content: flex-start;
 	flex-shrink: 0;
 	gap: 4rem;
+	margin: 0 0 auto;
 	background: colors.$color_grey;
 	border-radius: 10px;
+
 	@include media.small {
 		width: 55rem;
 	}
@@ -149,5 +158,3 @@ body {
 	@include mixins.columnBtn(colors.$color_richblack, colors.$color_white);
 	box-shadow: inset 0px 0px 10px #5F5E5E;
 }
-
-

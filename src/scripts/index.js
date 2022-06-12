@@ -1,10 +1,10 @@
-import {DigitalClock} from "./components/_clock.js";
+import {DigitalClock} from "./components/clock.js";
 
-function init () {
+function initApp () {
 	setInterval( () => {
 		const clock = new DigitalClock;
 		clock.renderClock();
 	}, 1000);
 }
 
-init();
+initApp();

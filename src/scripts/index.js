@@ -1,3 +1,10 @@
-import {displayCurrentTime} from "./components/_header.js";
+import {DigitalClock} from "./components/clock.js";
 
-setInterval(displayCurrentTime, 10);
+function initApp () {
+	setInterval( () => {
+		const clock = new DigitalClock;
+		clock.renderClock();
+	}, 1000);
+}
+
+initApp();

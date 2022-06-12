@@ -1,0 +1,160 @@
+@use "../config/colors.scss";
+@use "../config/mixins.scss";
+@use "../config/media.scss";
+
+html {
+	height: 100%;
+
+	@include media.small {
+		font-size: 7px;
+	}
+
+	@include media.extrasmall {
+		font-size: 5px;
+	}
+}
+
+body {
+	height: 100%;
+	background: linear-gradient(109.17deg, #126A85 1.08%, #9B34A5 115.97%);
+}
+
+.desk {
+	height: 80%;
+	display: flex;
+	justify-content: space-between;
+	padding: 5rem 5rem;
+	gap: 5rem;
+
+	@include media.small {
+		flex-wrap: nowrap;
+		overflow-y: hidden;
+		overflow-x: auto;
+		height: 85%;
+	}
+
+	@include media.extrasmall {
+		height: 87%;
+	}
+}
+
+.desk::-webkit-scrollbar {
+	width: 1rem;
+
+}
+
+.desk::-webkit-scrollbar-track {
+	background: colors.$color_blue;
+
+}
+
+.desk::-webkit-scrollbar-thumb {
+	background: colors.$color_richblack;
+}
+
+.desk::-webkit-scrollbar-thumb:hover {
+	background: colors.$color_black;
+}
+
+.desk__column {
+	width: 30%;
+	max-height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	flex-shrink: 0;
+	gap: 4rem;
+	margin: 0 0 auto;
+	background: colors.$color_grey;
+	border-radius: 10px;
+
+	@include media.small {
+		width: 55rem;
+	}
+}
+
+.column__header {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 3rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.column__title {
+	font-weight: 600;
+	font-size: 2.4rem;
+	color: colors.$color_darkgrey;
+	opacity: 0.8;
+}
+
+.column__counter {
+	font-weight: 600;
+	font-size: 2.4rem;
+	color: colors.$color_darkgrey;
+	opacity: 0.8;
+}
+
+.column__content {
+	max-height: 80%;
+	width: 80%;
+	margin: 1rem auto;
+	padding: 2rem;
+	display: flex;
+	flex-direction: column;
+	gap: 5rem;
+	overflow-y: auto;
+	overflow-x: hidden;
+	font-weight: 600;
+	font-size: 2.4rem;
+	opacity: 0.8;
+}
+
+.column__content::-webkit-scrollbar {
+	width: 1rem;
+
+}
+
+.column__content::-webkit-scrollbar-track {
+	background: colors.$color_blue;
+
+}
+
+.column__content::-webkit-scrollbar-thumb {
+	background: colors.$color_richblack;
+}
+
+.column__content::-webkit-scrollbar-thumb:hover {
+	background: colors.$color_black;
+}
+
+.card {
+	border: 2px solid black;
+}
+
+#btn-add-todo {
+	@include mixins.columnBtn(colors.$color_blue, colors.$color_white);
+}
+
+#btn-add-todo:hover {
+	@include mixins.columnBtn(colors.$color_darkblue, colors.$color_white);
+}
+
+#btn-add-todo:active {
+	@include mixins.columnBtn(colors.$color_darkblue, colors.$color_white);
+	box-shadow: inset 0px 0px 10px #00252A;
+}
+
+#btn-delete-all {
+	@include mixins.columnBtn(colors.$color_black, colors.$color_white);
+}
+
+#btn-delete-all:hover {
+	@include mixins.columnBtn(colors.$color_richblack, colors.$color_white);
+}
+
+#btn-delete-all:active {
+	@include mixins.columnBtn(colors.$color_richblack, colors.$color_white);
+	box-shadow: inset 0px 0px 10px #5F5E5E;
+}

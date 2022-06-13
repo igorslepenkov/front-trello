@@ -158,3 +158,10 @@ body {
 	@include mixins.columnBtn(colors.$color_richblack, colors.$color_white);
 	box-shadow: inset 0px 0px 10px #5F5E5E;
 }
+
+// remove later (temporary stored here, used for drag and frop feature)
+
+.dragging {
+	opacity: 0.5;
+	background: colors.$color_blue;
+}

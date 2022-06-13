@@ -1,4 +1,5 @@
 import {DigitalClock} from "./components/clock.js";
+import {enableDrag} from "./utils/drag.js"
 
 function initApp () {
 	setInterval( () => {
@@ -8,3 +9,5 @@ function initApp () {
 }
 
 initApp();
+
+enableDrag()

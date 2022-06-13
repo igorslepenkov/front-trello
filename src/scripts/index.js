@@ -7,4 +7,5 @@ function initApp() {
 		clock.renderClock();
 	}, 1000);
 }
+
 initApp();

@@ -68,7 +68,3 @@ function renderCard({ id, title, description, user: { name }, time, column }) {
 }
 
 export { Card, renderCard };
-
-
-
-

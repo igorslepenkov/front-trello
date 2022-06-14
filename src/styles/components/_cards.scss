@@ -1,0 +1,87 @@
+@use "../config/colors.scss";
+@use "../config/mixins.scss";
+@use "../config/media.scss";
+
+
+.card {
+    width: 100%;
+    background-color: colors.$color_lightblue;
+    border-radius: 0.625rem;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    padding: 2rem;
+
+    &__details {
+        font-size: 2.5rem;
+        color: colors.$color_black;
+    }
+
+    &__title {
+        font-size: 3rem;
+        margin: 3rem 3rem 4rem 5rem;
+    }
+
+    &__description {
+        margin-bottom: 4rem;
+    }
+
+    &__user {
+        margin-bottom: 1rem;
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__buttons button {
+        max-width: 100%;
+        font-size: 2rem;
+        border-radius: 0.5rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        color: colors.$color_black;
+        background: colors.$color_gradient;
+    }
+
+    &__button__edit {
+        margin-right: 1.5rem;
+    }
+
+    &__time {
+        margin: 0 auto;
+        text-align: end;
+        font-size: 1.9rem;
+        color: colors.$color_black;
+    }
+}
+
+.todo-card {
+    &:nth-child(even) {
+        background-color: colors.$color_lightviolet;
+    }
+
+    &:nth-child(odd) {
+        background-color: colors.$color_aquamarine;
+    }
+}
+
+.in-progress-card {
+    &:nth-child(even) {
+        background-color: colors.$color_lightblue;
+    }
+
+    &:nth-child(odd) {
+        background-color: colors.$color_powderpink;
+    }
+}
+
+.completed-card {
+    &:nth-child(even) {
+        background-color: colors.$color_lightviolet2;
+    }
+
+    &:nth-child(odd) {
+        background-color: colors.$color_coral;
+    }
+}

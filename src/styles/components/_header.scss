@@ -2,10 +2,6 @@
 
 /* styles */
 
-body {
-	font-family: sans-serif;
-}
-
 .header {
 	display: flex;
 	justify-content: space-between;
@@ -13,22 +9,21 @@ body {
 	padding: 2rem;
 	background: rgba(0, 0, 0, 0.7);
 	box-shadow: 0px 5px 5px;
-}
 
-.header__title {
-	margin: 0;
-	font-weight: 600;
-	font-size: 2.4rem;
-	text-align: left;
-	color: colors.$color_white;
-}
+	&__title {
+		margin: 0;
+		font-weight: 600;
+		font-size: 2.4rem;
+		text-align: left;
+		color: colors.$white;
+	}
 
-#clock {
-	display: flex;
-	align-items: center;  
-	font-weight: 600;
-	font-size: 2.4rem;
-	text-align: left;
-	color: colors.$color_white;
+	&__clock {
+		display: flex;
+		align-items: center;
+		font-weight: 600;
+		font-size: 2.4rem;
+		text-align: left;
+		color: colors.$white;
+	}
 }
-

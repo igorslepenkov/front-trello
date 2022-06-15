@@ -2,7 +2,7 @@
 
 /* mixins for tas column buttons*/
 
-@mixin columnBtn ($backroundColor: colors.$color_white, $fontColor: colors.$color_black) {
+@mixin button ($backroundColor: colors.$white, $fontColor: colors.$black) {
 	width: 100%;
 	padding: 1rem 0px;
 	font-size: 2.8rem;

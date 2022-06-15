@@ -1,4 +1,4 @@
-function DigitalClock () {
+function DigitalClock() {
 
 	this.date = new Date();
 	this.hours = this.date.getHours().toString().padStart(2, "0");
@@ -8,7 +8,7 @@ function DigitalClock () {
 	this.renderClock = function () {
 		const headerClock = document.querySelector("#clock");
 		headerClock.textContent = `${this.hours}:${this.minutes}:${this.seconds}`;
-	}
+	};
 }
 
-export {DigitalClock};
+export { DigitalClock };

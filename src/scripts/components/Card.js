@@ -1,5 +1,5 @@
-function Card(id, title, user, description, column) {
-  this.id = id;
+function Card(id, title, user, description, column = 'column-todo') {
+  this.id = () => id ? id : (Math.round(Math.random() * 1000)).toString();
   this.title = title;
   this.user = user;
   this.description = description;
@@ -24,26 +24,26 @@ function renderCard({ id, title, description, user: { name }, time, column }) {
   cardElement.classList.add('card');
   let buttons = null;
 
-  if (column === 'todo') {
+  if (column === 'column-todo') {
     cardElement.classList.add('todo-card');
-    appendColumn = document.querySelector('#todo');
+    appendColumn = document.querySelector('#column-todo');
     buttons = `
       <div class="card__buttons">
         <button class="card__button__edit">edit</button>
         <button class="card__button__delete">delete</button>
       </div>
     `;
-  } else if (column === 'in-progress') {
+  } else if (column === 'column-in-progress') {
     cardElement.classList.add('in-progress-card');
-    appendColumn = document.querySelector('#in-progress');
+    appendColumn = document.querySelector('#column-in-progress');
     buttons = `
       <div class="card__buttons">
         <button class="card__buttton__complete">complete</button>
       </div>
     `;
-  } else if (column === 'completed') {
+  } else if (column === 'column-completed') {
     cardElement.classList.add('completed-card');
-    appendColumn = document.querySelector('#completed');
+    appendColumn = document.querySelector('#column-completed');
     buttons = `
       <div class="card__buttons">
         <button class="card__button__delete">delete</button>

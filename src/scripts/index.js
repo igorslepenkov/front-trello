@@ -1,5 +1,5 @@
 import { DigitalClock } from "./components/clock.js";
-import { Card, renderCard } from './components/cards.js';
+import { Card, renderCard } from './components/Card.js';
 
 function initApp() {
 	setInterval(() => {

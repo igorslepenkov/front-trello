@@ -1,15 +1,13 @@
 // tablets and smartphones
-@mixin extrasmall {
+@mixin md {
 	@media (max-width: 992px) {
-			@content;
+		@content;
 	}
 }
 
 // large tablets and small desktops
-@mixin small {
+@mixin lg {
 	@media (max-width: 1366px) {
-			@content;
+		@content;
 	}
 }
-
-

@@ -1,0 +1,19 @@
+@use "../config/media.scss";
+
+body {
+    height: 100%;
+    background: linear-gradient(109.17deg, #126A85 1.08%, #9B34A5 115.97%);
+    font-family: sans-serif;
+}
+
+html {
+    height: 100%;
+
+    @include media.lg {
+        font-size: 7px;
+    }
+
+    @include media.md {
+        font-size: 5px;
+    }
+}

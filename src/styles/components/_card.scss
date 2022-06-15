@@ -5,15 +5,15 @@
 
 .card {
     width: 100%;
-    background-color: colors.$color_lightblue;
-    border-radius: 0.625rem;
-    border: 1px solid #000;
-    box-sizing: border-box;
     padding: 2rem;
+    border: 1px solid black;
+    border-radius: 0.625rem;
+    box-sizing: border-box;
+    background-color: colors.$lightblue;
 
     &__details {
         font-size: 2.5rem;
-        color: colors.$color_black;
+        color: colors.$black;
     }
 
     &__title {
@@ -40,8 +40,8 @@
         border-radius: 0.5rem;
         font-weight: 900;
         text-transform: uppercase;
-        color: colors.$color_black;
-        background: colors.$color_gradient;
+        color: colors.$black;
+        background: colors.$gradient;
     }
 
     &__button__edit {
@@ -52,36 +52,36 @@
         margin: 0 auto;
         text-align: end;
         font-size: 1.9rem;
-        color: colors.$color_black;
+        color: colors.$black;
     }
 }
 
 .todo-card {
     &:nth-child(even) {
-        background-color: colors.$color_lightviolet;
+        background-color: colors.$lightviolet;
     }
 
     &:nth-child(odd) {
-        background-color: colors.$color_aquamarine;
+        background-color: colors.$aquamarine;
     }
 }
 
 .in-progress-card {
     &:nth-child(even) {
-        background-color: colors.$color_lightblue;
+        background-color: colors.$lightblue;
     }
 
     &:nth-child(odd) {
-        background-color: colors.$color_powderpink;
+        background-color: colors.$powderpink;
     }
 }
 
 .completed-card {
     &:nth-child(even) {
-        background-color: colors.$color_lightviolet2;
+        background-color: colors.$violet;
     }
 
     &:nth-child(odd) {
-        background-color: colors.$color_coral;
+        background-color: colors.$coral;
     }
 }

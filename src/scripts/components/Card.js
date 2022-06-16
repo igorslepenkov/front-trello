@@ -28,8 +28,8 @@ function Card(id, title, user, description, column) {
       appendColumn = document.querySelector("#todo");
       buttons = `
         <div class="card__buttons">
-          <button class="card__button--edit">edit</button>
-          <button class="card__button--delete">delete</button>
+          <button type="button" class="card__button--edit">edit</button>
+          <button type="button" class="card__button--delete">delete</button>
         </div>
       `;
     } else if (column === "in-progress") {
@@ -37,7 +37,7 @@ function Card(id, title, user, description, column) {
       appendColumn = document.querySelector("#in-progress");
       buttons = `
         <div class="card__buttons">
-          <button class="card__buttton--complete">complete</button>
+          <button type="button" class="card__buttton--complete">complete</button>
         </div>
       `;
     } else if (column === "completed") {
@@ -45,7 +45,7 @@ function Card(id, title, user, description, column) {
       appendColumn = document.querySelector("#completed");
       buttons = `
         <div class="card__buttons">
-          <button class="card__button--delete">delete</button>
+          <button type="button" class="card__button--delete">delete</button>
         </div>
       `;
     }

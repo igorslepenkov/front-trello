@@ -7,8 +7,6 @@ body {
 }
 
 html {
-    height: 100%;
-
     @include media.lg {
         font-size: 7px;
     }

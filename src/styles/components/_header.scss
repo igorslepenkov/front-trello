@@ -1,21 +1,21 @@
-@use "../config/colors.scss";
+@use "../config/color.scss";
 
 /* styles */
 
 .header {
-	display: flex;
-	justify-content: space-between;
 	max-width: 100%;
 	padding: 2rem;
-	background: rgba(0, 0, 0, 0.7);
+	display: flex;
 	box-shadow: 0px 5px 5px;
+	justify-content: space-between;
+	background: rgba(0, 0, 0, 0.7);
 
 	&__title {
 		margin: 0;
 		font-weight: 600;
 		font-size: 2.4rem;
 		text-align: left;
-		color: colors.$white;
+		color: color.$white;
 	}
 
 	&__clock {
@@ -24,6 +24,6 @@
 		font-weight: 600;
 		font-size: 2.4rem;
 		text-align: left;
-		color: colors.$white;
+		color: color.$white;
 	}
 }

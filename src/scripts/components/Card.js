@@ -1,70 +1,72 @@
-function Card(id, title, user, description, column = 'column-todo') {
-  this.id = () => id ? id : (Math.round(Math.random() * 1000)).toString();
+function Card(id, title, user, description, column) {
+  this.id = id;
   this.title = title;
   this.user = user;
   this.description = description;
   this.getDateTime = () => {
     const date = new Date();
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const year = date.getFullYear();
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
     return `${day}.${month}.${year} | ${hours}:${minutes}`;
   };
   this.time = this.getDateTime();
   this.column = column;
+
+  this.render = () => {
+    let appendColumn = null;
+
+    const cardElement = document.createElement("div");
+    cardElement.id = this.id;
+    cardElement.classList.add("card");
+    let buttons = null;
+
+    if (column === "todo") {
+      cardElement.classList.add("card--todo");
+      appendColumn = document.querySelector("#todo");
+      buttons = `
+        <div class="card__buttons">
+          <button class="card__button--edit">edit</button>
+          <button class="card__button--delete">delete</button>
+        </div>
+      `;
+    } else if (column === "in-progress") {
+      cardElement.classList.add("card--in-progress");
+      appendColumn = document.querySelector("#in-progress");
+      buttons = `
+        <div class="card__buttons">
+          <button class="card__buttton--complete">complete</button>
+        </div>
+      `;
+    } else if (column === "completed") {
+      cardElement.classList.add("card--complited");
+      appendColumn = document.querySelector("#completed");
+      buttons = `
+        <div class="card__buttons">
+          <button class="card__button--delete">delete</button>
+        </div>
+      `;
+    }
+
+    const appendColumnContent = appendColumn.querySelector(".column__content");
+
+    const html = `
+        ${buttons}
+        <div class="card__details">
+          <h4 class="card__title">${this.title}</h4>
+          <p class="card__description">${this.description}</p>
+          <p class="card__user">${this.user.name}</p>
+          <p class="card__time">${this.time}</p>
+        </div>
+    `;
+
+    cardElement.insertAdjacentHTML("afterbegin", html);
+    appendColumnContent.insertAdjacentElement("beforeend", cardElement);
+  };
 }
 
-function renderCard({ id, title, description, user: { name }, time, column }) {
-  let appendColumn = null;
+export { Card };
 
-  const cardElement = document.createElement("div");
-  cardElement.id = id;
-  cardElement.classList.add('card');
-  let buttons = null;
-
-  if (column === 'column-todo') {
-    cardElement.classList.add('todo-card');
-    appendColumn = document.querySelector('#column-todo');
-    buttons = `
-      <div class="card__buttons">
-        <button class="card__button__edit">edit</button>
-        <button class="card__button__delete">delete</button>
-      </div>
-    `;
-  } else if (column === 'column-in-progress') {
-    cardElement.classList.add('in-progress-card');
-    appendColumn = document.querySelector('#column-in-progress');
-    buttons = `
-      <div class="card__buttons">
-        <button class="card__buttton__complete">complete</button>
-      </div>
-    `;
-  } else if (column === 'column-completed') {
-    cardElement.classList.add('completed-card');
-    appendColumn = document.querySelector('#column-completed');
-    buttons = `
-      <div class="card__buttons">
-        <button class="card__button__delete">delete</button>
-      </div>
-    `;
-  }
-
-  const appendColumnContent = appendColumn.querySelector('.column__content');
-
-  const html = `
-      ${buttons}
-      <div class="card__details">
-        <h4 class="card__title">${title}</h4>
-        <p class="card__description">${description}</p>
-        <p class="card__user">${name}</p>
-        <p class="card__time">${time}</p>
-      </div>
-  `;
-
-  cardElement.insertAdjacentHTML("afterbegin", html);
-  appendColumnContent.insertAdjacentElement('beforeend', cardElement);
-}
-
-export { Card, renderCard };
+const card1 = new Card(1111, 'test', 'test', 'test', 'card-todo');

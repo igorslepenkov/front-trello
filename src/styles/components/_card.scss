@@ -1,4 +1,4 @@
-@use "../config/colors.scss";
+@use "../config/color.scss";
 @use "../config/mixins.scss";
 @use "../config/media.scss";
 
@@ -9,11 +9,11 @@
     border: 1px solid black;
     border-radius: 0.625rem;
     box-sizing: border-box;
-    background-color: colors.$lightblue;
+    background-color: color.$lightblue;
 
     &__details {
         font-size: 2.5rem;
-        color: colors.$black;
+        color: color.$black;
     }
 
     &__title {
@@ -40,11 +40,12 @@
         border-radius: 0.5rem;
         font-weight: 900;
         text-transform: uppercase;
-        color: colors.$black;
-        background: colors.$gradient;
+        color: color.$black;
+        background: color.$gradient;
+        cursor: pointer;
     }
 
-    &__button__edit {
+    &__button--edit {
         margin-right: 1.5rem;
     }
 
@@ -52,36 +53,36 @@
         margin: 0 auto;
         text-align: end;
         font-size: 1.9rem;
-        color: colors.$black;
-    }
-}
-
-.todo-card {
-    &:nth-child(even) {
-        background-color: colors.$lightviolet;
+        color: color.$black;
     }
 
-    &:nth-child(odd) {
-        background-color: colors.$aquamarine;
-    }
-}
+    &--todo {
+        &:nth-child(even) {
+            background-color: color.$lightviolet;
+        }
 
-.in-progress-card {
-    &:nth-child(even) {
-        background-color: colors.$lightblue;
-    }
-
-    &:nth-child(odd) {
-        background-color: colors.$powderpink;
-    }
-}
-
-.completed-card {
-    &:nth-child(even) {
-        background-color: colors.$violet;
+        &:nth-child(odd) {
+            background-color: color.$aquamarine;
+        }
     }
 
-    &:nth-child(odd) {
-        background-color: colors.$coral;
+    &--in-progress {
+        &:nth-child(even) {
+            background-color: color.$lightblue;
+        }
+
+        &:nth-child(odd) {
+            background-color: color.$powderpink;
+        }
+    }
+
+    &--completed {
+        &:nth-child(even) {
+            background-color: color.$violet;
+        }
+
+        &:nth-child(odd) {
+            background-color: color.$coral;
+        }
     }
 }

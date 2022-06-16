@@ -1,5 +1,7 @@
+import { v4 as uuidv4 } from "uuid";
+
 function Card(id, title, user, description, column) {
-  this.id = id;
+  id ? (this.id = id) : (this.id = uuidv4());
   this.title = title;
   this.user = user;
   this.description = description;
@@ -25,7 +27,7 @@ function Card(id, title, user, description, column) {
 
     if (column === "todo") {
       cardElement.classList.add("card--todo");
-      appendColumn = document.querySelector("#todo");
+      appendColumn = document.querySelector("#column-todo");
       buttons = `
         <div class="card__buttons">
           <button type="button" class="card__button--edit">edit</button>
@@ -34,7 +36,7 @@ function Card(id, title, user, description, column) {
       `;
     } else if (column === "in-progress") {
       cardElement.classList.add("card--in-progress");
-      appendColumn = document.querySelector("#in-progress");
+      appendColumn = document.querySelector("#column-in-progress");
       buttons = `
         <div class="card__buttons">
           <button type="button" class="card__buttton--complete">complete</button>
@@ -42,7 +44,7 @@ function Card(id, title, user, description, column) {
       `;
     } else if (column === "completed") {
       cardElement.classList.add("card--complited");
-      appendColumn = document.querySelector("#completed");
+      appendColumn = document.querySelector("#column-completed");
       buttons = `
         <div class="card__buttons">
           <button type="button" class="card__button--delete">delete</button>
@@ -68,5 +70,3 @@ function Card(id, title, user, description, column) {
 }
 
 export { Card };
-
-const card1 = new Card(1111, 'test', 'test', 'test', 'card-todo');

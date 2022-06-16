@@ -2,13 +2,13 @@
 
 /* mixins for tas column buttons*/
 
-@mixin button ($backroundColor: color.$white, $fontColor: color.$black) {
+@mixin button ($backround_color: color.$white, $font_color: color.$black) {
 	width: 100%;
 	padding: 1rem 0px;
 	font-size: 2.8rem;
 	font-weight: 600;
-	background-color: $backroundColor;
-	color: $fontColor;
+	background-color: $backround_color;
+	color: $font_color;
 	border: none;
 	border-radius: 0px 0px 10px 10px;
 	cursor: pointer;

@@ -1,4 +1,5 @@
 @use "./config/normalize.scss";
+@use "./config/base.scss";
 @use "./components/_header.scss";
-@use "./components/desk";
-@use "./components/_cards"
+@use "./components/_desk.scss";
+@use "./components/_card.scss";

@@ -1,14 +1,14 @@
-@use "./colors.scss";
+@use "./color.scss";
 
 /* mixins for tas column buttons*/
 
-@mixin columnBtn ($backroundColor: colors.$color_white, $fontColor: colors.$color_black) {
+@mixin button ($backround_color: color.$white, $font_color: color.$black) {
 	width: 100%;
 	padding: 1rem 0px;
 	font-size: 2.8rem;
 	font-weight: 600;
-	background-color: $backroundColor;
-	color: $fontColor;
+	background-color: $backround_color;
+	color: $font_color;
 	border: none;
 	border-radius: 0px 0px 10px 10px;
 	cursor: pointer;

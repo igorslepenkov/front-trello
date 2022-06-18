@@ -12,17 +12,17 @@
     background-color: color.$lightblue;
 
     &__details {
-        font-size: 2.5rem;
+        font-size: 1.8rem;
         color: color.$black;
     }
 
     &__title {
-        font-size: 3rem;
-        margin: 3rem 3rem 4rem 5rem;
+        font-size: 2.4rem;
+        margin: 2rem 2rem 3rem 4rem;
     }
 
     &__description {
-        margin-bottom: 4rem;
+        margin-bottom: 2rem;
     }
 
     &__user {
@@ -36,7 +36,7 @@
 
     &__buttons button {
         max-width: 100%;
-        font-size: 2rem;
+        font-size: 1.4rem;
         border-radius: 0.5rem;
         font-weight: 900;
         text-transform: uppercase;
@@ -52,7 +52,7 @@
     &__time {
         margin: 0 auto;
         text-align: end;
-        font-size: 1.9rem;
+        font-size: 1.8rem;
         color: color.$black;
     }
 

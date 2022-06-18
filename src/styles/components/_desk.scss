@@ -48,7 +48,7 @@
 	flex-direction: column;
 	justify-content: flex-start;
 	flex-shrink: 0;
-	gap: 4rem;
+	gap: 2rem;
 	margin: 0 0 auto;
 	background: color.$grey;
 	border-radius: 10px;
@@ -60,7 +60,7 @@
 	&__header {
 		box-sizing: border-box;
 		width: 100%;
-		padding: 3rem;
+		padding: 1rem 4rem;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -87,11 +87,11 @@
 		padding: 2rem;
 		display: flex;
 		flex-direction: column;
-		gap: 5rem;
+		gap: 2rem;
 		overflow-y: auto;
 		overflow-x: hidden;
 		font-weight: 600;
-		font-size: 2.4rem;
+		font-size: 2rem;
 		opacity: 0.8;
 	}
 

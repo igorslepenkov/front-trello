@@ -26,6 +26,7 @@ function Card(id, title, user, description, column) {
     const cardElement = document.createElement("div");
     cardElement.id = this.id;
     cardElement.classList.add("card");
+		cardElement.draggable = "true";
 		cardElement.dataset.dragged = "false";
     let buttons = null;
 
@@ -55,15 +56,7 @@ function Card(id, title, user, description, column) {
 			currentTarget.classList.remove("dragging");
 		});
 
-    const html = `
-		${buttons}
-		<div class="card__details">
-			<h4 class="card__title">${this.title}</h4>
-			<p class="card__description">${this.description}</p>
-			<p class="card__user">${this.user.name}</p>
-			<p class="card__time">${this.time}</p>
-		</div>
-`;
+    const html = getTemplateCard(buttons, this.title, this.description, this.user.name, this.getDateTime());
 
     cardElement.insertAdjacentHTML("afterbegin", html);
     appendColumnContent.insertAdjacentElement("beforeend", cardElement);

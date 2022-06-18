@@ -6,9 +6,14 @@ function initApp() {
   const clock = new DigitalClock();
 	clock.start();
 
-  const card1 = new Card("", "test", "test", "test", "todo");
+  const card1 = new Card("", "test1", "test", "test", "todo");
   card1.render();
-	console.log(card1);
+
+	const card2 = new Card("", "test2", "test", "test", "todo");
+  card2.render();
+
+	const card3 = new Card("", "test3", "test", "test", "todo");
+  card3.render();
 
 	enableDrag();
 }

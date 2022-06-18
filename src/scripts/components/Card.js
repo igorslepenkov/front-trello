@@ -2,7 +2,8 @@ import { v4 as uuidv4 } from "uuid";
 import {getTemplateCard, getTemplateTodoCardBtn, getTemplateInProgressCardBtn, getTemplateCompletedCardBtn} from "../utils/templates.js"
 
 function Card(id, title, user, description, column) {
-  this.id = id || uuidv4();
+  
+	this.id = id || uuidv4();
   this.title = title;
   this.user = user;
   this.description = description;
@@ -25,6 +26,7 @@ function Card(id, title, user, description, column) {
     const cardElement = document.createElement("div");
     cardElement.id = this.id;
     cardElement.classList.add("card");
+		cardElement.dataset.dragged = "false";
     let buttons = null;
 
     if (column === "todo") {
@@ -42,8 +44,26 @@ function Card(id, title, user, description, column) {
     }
 
     const appendColumnContent = appendColumn.querySelector(".column__content");
+		
+		cardElement.addEventListener("dragstart", ({currentTarget}) => {
+			currentTarget.dataset.dragged = "true";
+			currentTarget.classList.add("dragging");
+		});
 
-    const html = getTemplateCard (buttons, this.title, this.description, this.user.name, this.time);
+		cardElement.addEventListener("dragend", ({currentTarget}) => {
+			currentTarget.dataset.dragged = "false";
+			currentTarget.classList.remove("dragging");
+		});
+
+    const html = `
+		${buttons}
+		<div class="card__details">
+			<h4 class="card__title">${this.title}</h4>
+			<p class="card__description">${this.description}</p>
+			<p class="card__user">${this.user.name}</p>
+			<p class="card__time">${this.time}</p>
+		</div>
+`;
 
     cardElement.insertAdjacentHTML("afterbegin", html);
     appendColumnContent.insertAdjacentElement("beforeend", cardElement);

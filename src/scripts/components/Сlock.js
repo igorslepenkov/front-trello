@@ -1,4 +1,9 @@
 function DigitalClock() {
+	
+	this.hours = "00";
+	this.minutes = "00";
+	this.seconds = "00";
+		
 	this.getTime = () => {
 		this.date = new Date();
 		this.hours = this.date.getHours().toString().padStart(2, "0");
@@ -17,8 +22,10 @@ function DigitalClock() {
 		this.clock.textContent = this.getTime();
 	};
 
-	this.render();
-	setInterval(this.update, 1000);
+	this.start = () => {
+		this.render();
+		setInterval(this.update, 1000)
+	}
 }
 
 export { DigitalClock };

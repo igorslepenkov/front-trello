@@ -46,14 +46,14 @@ function Card(id, title, user, description, column) {
 
     const appendColumnContent = appendColumn.querySelector(".column__content");
 		
-		cardElement.addEventListener("dragstart", ({currentTarget}) => {
-			currentTarget.dataset.dragged = "true";
-			currentTarget.classList.add("dragging");
+		cardElement.addEventListener("dragstart", ({target, dataTransfer}) => {
+			target.dataset.dragged = "true";
+			target.classList.add("card--dragged");
 		});
 
-		cardElement.addEventListener("dragend", ({currentTarget}) => {
-			currentTarget.dataset.dragged = "false";
-			currentTarget.classList.remove("dragging");
+		cardElement.addEventListener("dragend", ({target}) => {
+			target.dataset.dragged = "false";
+			target.classList.remove("card--dragged");
 		});
 
     const html = getTemplateCard(buttons, this.title, this.description, this.user.name, this.getDateTime());

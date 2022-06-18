@@ -33,20 +33,24 @@
         justify-content: flex-end;
     }
 
-    &__buttons button {
-        max-width: 100%;
-        font-size: 1.4rem;
-        font-weight: 900;
-        text-transform: uppercase;
-        color: color.$black;
-        border-radius: 0.5rem;
-				background: color.$gradient;
-        cursor: pointer;
-    }
+		&__button {
+			max-width: 100%;
+			font-size: 1.4rem;
+			font-weight: 900;
+			text-transform: uppercase;
+			color: color.$black;
+			border-radius: 0.5rem;
+			cursor: pointer;
+		}
+		
+		&__button--edit {
+			background: color.$gradient;
+		} 
 
-    &__button--edit {
-        margin-right: 1.5rem;
-    }
+		&__button--delete {
+			background: color.$gradient;
+			margin-right: 1.5rem;
+		} 
 
     &__time {
         margin: 0 auto;

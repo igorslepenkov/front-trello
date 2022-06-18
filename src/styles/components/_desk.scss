@@ -5,21 +5,17 @@
 
 
 .desk {
-	height: 80%;
-	padding: 5rem 5rem;
-	gap: 5rem;
 	display: flex;
 	justify-content: space-between;
+	gap: 5rem;
+	height: 90vh;
+	padding: 5rem 5rem;
 
 	@include media.lg {
-		height: 85%;
 		flex-wrap: nowrap;
+		height: 95vh;
 		overflow-y: hidden;
 		overflow-x: auto;
-	}
-
-	@include media.md {
-		height: 87%;
 	}
 }
 
@@ -42,56 +38,55 @@
 }
 
 .column {
-	width: 30%;
-	max-height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	flex-shrink: 0;
 	gap: 2rem;
+	width: 30%;
+	max-height: 85vh;
 	margin: 0 0 auto;
-	background: color.$grey;
 	border-radius: 10px;
-
+	background: color.$grey;
+	
 	@include media.lg {
 		width: 55rem;
 	}
 
 	&__header {
-		box-sizing: border-box;
-		width: 100%;
-		padding: 1rem 4rem;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		width: 100%;
+		padding: 1rem 4rem;
 	}
 
 	&__title {
-		font-weight: 600;
 		font-size: 2.4rem;
+		font-weight: 600;
 		color: color.$darkgrey;
 		opacity: 0.8;
 	}
 
 	&__counter {
-		font-weight: 600;
 		font-size: 2.4rem;
+		font-weight: 600;
 		color: color.$darkgrey;
 		opacity: 0.8;
 	}
 
 	&__content {
-		max-height: 80%;
-		width: 80%;
-		margin: 1rem auto;
-		padding: 2rem;
 		display: flex;
 		flex-direction: column;
 		gap: 2rem;
+		max-height: 80vh;
+		width: 80%;
+		margin: 1rem auto;
+		padding: 2rem;
 		overflow-y: auto;
 		overflow-x: hidden;
-		font-weight: 600;
 		font-size: 2rem;
+		font-weight: 600;
 		opacity: 0.8;
 	}
 

@@ -8,7 +8,6 @@
     padding: 2rem;
     border: 1px solid black;
     border-radius: 0.625rem;
-    box-sizing: border-box;
     background-color: color.$lightblue;
 
     &__details {
@@ -17,8 +16,8 @@
     }
 
     &__title {
-        font-size: 2.4rem;
-        margin: 2rem 2rem 3rem 4rem;
+			margin: 2rem 2rem 3rem 4rem;
+			font-size: 2.4rem;
     }
 
     &__description {
@@ -37,11 +36,11 @@
     &__buttons button {
         max-width: 100%;
         font-size: 1.4rem;
-        border-radius: 0.5rem;
         font-weight: 900;
         text-transform: uppercase;
         color: color.$black;
-        background: color.$gradient;
+        border-radius: 0.5rem;
+				background: color.$gradient;
         cursor: pointer;
     }
 
@@ -51,8 +50,8 @@
 
     &__time {
         margin: 0 auto;
-        text-align: end;
-        font-size: 1.8rem;
+				font-size: 1.8rem;
+				text-align: end;
         color: color.$black;
     }
 

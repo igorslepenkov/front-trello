@@ -52,16 +52,18 @@ function Card(id, title, user, description, column) {
 		cardElement.addEventListener("dragend", ({target}) => {
 			target.dataset.dragged = "false";
 			target.classList.remove("card--dragged");
-			target.column = event.composedPath()[2].id;
+			target.column =  event.composedPath()[2].id;
+			this.column = target.column;
 
+			const currentClass = target.classList[1];
 			if (target.column === "column-todo") {
-				cardElement.classList.add("card--todo");
+				cardElement.classList.replace(currentClass, "card--todo")
 				buttons = getTemplateTodoCardBtn();
 			} else if (target.column === "column-in-progress") {
-				cardElement.classList.add("card--in-progress");
+				cardElement.classList.replace(currentClass, "card--in-progress");
 				buttons = getTemplateInProgressCardBtn();
 			} else if (target.column === "column-completed") {
-				cardElement.classList.add("card--complited");
+				cardElement.classList.replace(currentClass, "card--complited");
 				buttons = getTemplateCompletedCardBtn();
 			}
 	

@@ -68,11 +68,18 @@
 	}
 
 	&--in-progress {
-		background-color: color.$grey;
+		background-color: color.$lightblue;
 	}
 
-	&--completed {
-		background-color: color.$grey;
+	&--complited {
+		background-color: color.$violet;
+
+		.card__details {
+			color: color.$richblack;
+		}
+		.card__time {
+			color: color.$richblack;
+		}
 	}
 
 	&--dragged {

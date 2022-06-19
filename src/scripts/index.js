@@ -1,6 +1,6 @@
 import { DigitalClock } from "./components/Сlock.js";
 import { Card, renderCard } from "./components/Card.js";
-import {enableDrag} from "./utils/drag";
+import {enableDrag} from "./components/Column.js";
 
 function initApp() {
   const clock = new DigitalClock();

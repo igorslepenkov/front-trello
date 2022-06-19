@@ -1,31 +1,27 @@
-import { v4 as uuidv4 } from "uuid";
+import { getDateTime } from "../utils/getDateTime.js";
 
-function Card(id, title, user, description, column) {
-  id ? (this.id = id) : (this.id = uuidv4());
-  this.title = title;
-  this.user = user;
-  this.description = description;
-  this.getDateTime = () => {
-    const date = new Date();
-    const day = date.getDate().toString().padStart(2, "0");
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const year = date.getFullYear();
-    const hours = date.getHours().toString().padStart(2, "0");
-    const minutes = date.getMinutes().toString().padStart(2, "0");
-    return `${day}.${month}.${year} | ${hours}:${minutes}`;
-  };
-  this.time = this.getDateTime();
-  this.column = column;
+function Card(mockapiObject, title, user, description, column) {
+  this.id = mockapiObject.id || null;
+  this.title = mockapiObject.title || title;
+  this.user = mockapiObject.user || user;
+  this.description = mockapiObject.description || description;
+  this.column = mockapiObject.column || column;
+  this.element = document.querySelector(`#card-${mockapiObject.id}`) || null;
+  this.time = mockapiObject.time || getDateTime();
 
   this.render = () => {
+    if (this.element) {
+      this.element.remove();
+    }
+
     let appendColumn = null;
 
     const cardElement = document.createElement("div");
-    cardElement.id = this.id;
+    cardElement.id = `card-${this.id}`;
     cardElement.classList.add("card");
     let buttons = null;
 
-    if (column === "todo") {
+    if (this.column === "todo") {
       cardElement.classList.add("card--todo");
       appendColumn = document.querySelector("#column-todo");
       buttons = `
@@ -34,7 +30,7 @@ function Card(id, title, user, description, column) {
           <button type="button" class="card__button--delete">delete</button>
         </div>
       `;
-    } else if (column === "in-progress") {
+    } else if (this.column === "in-progress") {
       cardElement.classList.add("card--in-progress");
       appendColumn = document.querySelector("#column-in-progress");
       buttons = `
@@ -42,7 +38,7 @@ function Card(id, title, user, description, column) {
           <button type="button" class="card__buttton--complete">complete</button>
         </div>
       `;
-    } else if (column === "completed") {
+    } else if (this.column === "completed") {
       cardElement.classList.add("card--complited");
       appendColumn = document.querySelector("#column-completed");
       buttons = `
@@ -66,6 +62,11 @@ function Card(id, title, user, description, column) {
 
     cardElement.insertAdjacentHTML("afterbegin", html);
     appendColumnContent.insertAdjacentElement("beforeend", cardElement);
+    this.element = cardElement;
+  };
+
+  this.remove = () => {
+    this.element.parentElement.removeChild(this.element);
   };
 }
 

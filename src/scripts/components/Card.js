@@ -67,7 +67,7 @@ function Card(mockapiObject, title, user, description, column) {
 
     const appendColumnContent = appendColumn.querySelector(".column__content");
 
-		const html = getTemplateCard(buttons, this.title, this.description, this.user.name, this.getDateTime());
+		const html = getTemplateCard(buttons, this.title, this.description, this.user.name, getDateTime());
 
     cardElement.insertAdjacentHTML("afterbegin", html);
     appendColumnContent.insertAdjacentElement("beforeend", cardElement);

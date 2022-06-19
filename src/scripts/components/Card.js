@@ -1,24 +1,14 @@
-import { v4 as uuidv4 } from "uuid";
+import { getDateTime } from "../utils/getDateTime.js";
 import {getTemplateCard, getTemplateTodoCardBtn, getTemplateInProgressCardBtn, getTemplateCompletedCardBtn} from "../utils/templates.js"
 
-function Card(id, title, user, description, column) {
-  
-	this.id = id || uuidv4();
-  this.title = title;
-  this.user = user;
-  this.description = description;
-	this.time = null;
-  this.column = column;
-
-  this.getDateTime = () => {
-    const date = new Date();
-    const day = date.getDate().toString().padStart(2, "0");
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const year = date.getFullYear();
-    const hours = date.getHours().toString().padStart(2, "0");
-    const minutes = date.getMinutes().toString().padStart(2, "0");
-    return this.time = `${day}.${month}.${year} | ${hours}:${minutes}`;
-  };
+function Card(mockapiObject, title, user, description, column) {
+  this.id = mockapiObject.id || null;
+  this.title = mockapiObject.title || title;
+  this.user = mockapiObject.user || user;
+  this.description = mockapiObject.description || description;
+  this.column = mockapiObject.column || column;
+  this.element = document.querySelector(`#card-${mockapiObject.id}`) || null;
+  this.time = mockapiObject.time || getDateTime();
 
   this.render = () => {
     let appendColumn = null;

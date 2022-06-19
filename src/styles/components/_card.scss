@@ -31,6 +31,7 @@
 	&__buttons {
 		display: flex;
 		justify-content: flex-end;
+		gap: 0.5rem	
 	}
 
 	&__button {
@@ -38,18 +39,21 @@
 		font-size: 1.4rem;
 		font-weight: 900;
 		text-transform: uppercase;
-		color: color.$black;
+		color: color.$white;
 		border-radius: 0.5rem;
 		cursor: pointer;
 	}
 
 	&__button--edit {
-		background: color.$gradient;
+		background: color.$blue;
+	}
+
+	&__button--complete {
+		background: color.$blue;
 	}
 
 	&__button--delete {
-		background: color.$gradient;
-		margin-right: 1.5rem;
+		background: color.$richblack;
 	}
 
 	&__time {

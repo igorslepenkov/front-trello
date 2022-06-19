@@ -17,7 +17,7 @@ function Card(id, title, user, description, column) {
     const year = date.getFullYear();
     const hours = date.getHours().toString().padStart(2, "0");
     const minutes = date.getMinutes().toString().padStart(2, "0");
-    return `${day}.${month}.${year} | ${hours}:${minutes}`;
+    return this.time = `${day}.${month}.${year} | ${hours}:${minutes}`;
   };
 
   this.render = () => {
@@ -30,23 +30,21 @@ function Card(id, title, user, description, column) {
 		cardElement.dataset.dragged = "false";
     let buttons = null;
 
-    if (column === "todo") {
+    if (column === "column-todo") {
       cardElement.classList.add("card--todo");
       appendColumn = document.querySelector("#column-todo");
       buttons = getTemplateTodoCardBtn();
-    } else if (column === "in-progress") {
+    } else if (column === "column-in-progress") {
       cardElement.classList.add("card--in-progress");
       appendColumn = document.querySelector("#column-in-progress");
       buttons = getTemplateInProgressCardBtn();
-    } else if (column === "completed") {
+    } else if (column === "column-completed") {
       cardElement.classList.add("card--complited");
       appendColumn = document.querySelector("#column-completed");
       buttons = getTemplateCompletedCardBtn();
     }
 
-    const appendColumnContent = appendColumn.querySelector(".column__content");
-		
-		cardElement.addEventListener("dragstart", ({target, dataTransfer}) => {
+		cardElement.addEventListener("dragstart", ({target}) => {
 			target.dataset.dragged = "true";
 			target.classList.add("card--dragged");
 		});
@@ -54,13 +52,30 @@ function Card(id, title, user, description, column) {
 		cardElement.addEventListener("dragend", ({target}) => {
 			target.dataset.dragged = "false";
 			target.classList.remove("card--dragged");
-		});
+			target.column = event.composedPath()[2].id;
 
-    const html = getTemplateCard(buttons, this.title, this.description, this.user.name, this.getDateTime());
+			if (target.column === "column-todo") {
+				cardElement.classList.add("card--todo");
+				buttons = getTemplateTodoCardBtn();
+			} else if (target.column === "column-in-progress") {
+				cardElement.classList.add("card--in-progress");
+				buttons = getTemplateInProgressCardBtn();
+			} else if (target.column === "column-completed") {
+				cardElement.classList.add("card--complited");
+				buttons = getTemplateCompletedCardBtn();
+			}
+	
+			target.innerHTML = getTemplateCard(buttons, this.title, this.description, this.user.name, this.time)
+		})
+
+    const appendColumnContent = appendColumn.querySelector(".column__content");
+
+		const html = getTemplateCard(buttons, this.title, this.description, this.user.name, this.getDateTime());
 
     cardElement.insertAdjacentHTML("afterbegin", html);
     appendColumnContent.insertAdjacentElement("beforeend", cardElement);
-  };
+  };	
 }
+
 
 export { Card };

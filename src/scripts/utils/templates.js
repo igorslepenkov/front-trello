@@ -24,7 +24,7 @@ function getTemplateTodoCardBtn () {
 function getTemplateInProgressCardBtn () {
 	return `
 	<div class="card__buttons">
-		<button type="button" class="card__buttton card__button--complete">complete</button>
+		<button type="button" class="card__button card__button--complete">complete</button>
 	</div>
 `;
 }

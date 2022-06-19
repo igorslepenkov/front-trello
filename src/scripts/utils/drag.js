@@ -13,11 +13,12 @@ function enableDrag() {
 		const cardsContainer = currentTarget.children[1];
 		const dragged = document.querySelector(`[data-dragged='true']`);
 
+
 		const appendPlace = getDraggableInsertPlace(currentTarget, clientY);
 
 
 		if (appendPlace == Number.NEGATIVE_INFINITY) {
-			cardsContainer.appendChild(dragged);
+				cardsContainer.appendChild(dragged);
 		} else cardsContainer.insertBefore(dragged, appendPlace);
 	}
 

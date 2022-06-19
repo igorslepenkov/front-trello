@@ -11,10 +11,14 @@ function Card(mockapiObject, title, user, description, column) {
   this.time = mockapiObject.time || getDateTime();
 
   this.render = () => {
+    if (this.element) {
+      this.element.remove();
+    }
+
     let appendColumn = null;
 
     const cardElement = document.createElement("div");
-    cardElement.id = this.id;
+    cardElement.id = `card-${this.id}`;
     cardElement.classList.add("card");
 		cardElement.draggable = "true";
 		cardElement.dataset.dragged = "false";
@@ -29,6 +33,7 @@ function Card(mockapiObject, title, user, description, column) {
       appendColumn = document.querySelector("#column-in-progress");
       buttons = getTemplateInProgressCardBtn();
     } else if (column === "column-completed") {
+
       cardElement.classList.add("card--complited");
       appendColumn = document.querySelector("#column-completed");
       buttons = getTemplateCompletedCardBtn();
@@ -66,8 +71,12 @@ function Card(mockapiObject, title, user, description, column) {
 
     cardElement.insertAdjacentHTML("afterbegin", html);
     appendColumnContent.insertAdjacentElement("beforeend", cardElement);
-  };	
-}
+    this.element = cardElement;
+  };
 
+  this.remove = () => {
+    this.element.parentElement.removeChild(this.element);
+  };
+}
 
 export { Card };

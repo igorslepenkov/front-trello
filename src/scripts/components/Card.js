@@ -6,6 +6,8 @@ import {
   getTemplateCompletedCardBtn,
 } from "../utils/templates.js";
 import { GLOBAL_CONSTANTS } from "../utils/globalConstants.js";
+import { postMockApiCard } from "../services/mockapi.js";
+import { updateCardCounter } from "./Desk.js";
 
 function Card(cardDataObject) {
   this.id = cardDataObject.id || null;
@@ -38,8 +40,18 @@ function Card(cardDataObject) {
       target.classList.replace(currentClass, "card--complited");
     }
 
+		this.post();
+		this.updateCounter();
     this.render();
-  };
+	};
+
+	this.post = async () => {
+		await postMockApiCard(this);
+	}
+
+	this.updateCounter = async () => {
+		await updateCardCounter();
+	}
 
   this.render = () => {
     if (this.element) {

@@ -1,9 +1,10 @@
 import { DigitalClock } from "./components/Сlock.js";
-import { enableDrag } from "./components/Desk";
+import { enableDrag, updateCardCounter } from "./components/Desk";
 import { Card } from "./components/Card.js";
-import { postMockApiCard } from "./services/mockapi.js"
+import { GLOBAL_CONSTANTS } from "./utils/globalConstants.js";
+import { postMockApiCard, getMockApiCards } from "./services/mockapi.js"
 
-function initApp() {
+async function initApp() {
   const clock = new DigitalClock();
   clock.start();
 
@@ -11,28 +12,29 @@ function initApp() {
     title: "title",
     user: { name: "Test Testovich" },
     description: "Hello world!",
-    column: "column-todo",
+    column: GLOBAL_CONSTANTS.COLUMNS.TODO,
   }).render();
 
   const card2 = new Card({
     title: "title1",
     user: { name: "Test Akakievich" },
     description: "Peace!",
-    column: "column-todo",
+    column: GLOBAL_CONSTANTS.COLUMNS.TODO,
   }).render();
 
   const card3 = new Card({
     title: "title2",
     user: { name: "Test Evkakievich" },
     description: "Are you ready for pain?",
-    column: "column-todo",
+    column: GLOBAL_CONSTANTS.COLUMNS.TODO,
   }).render();
 
-	console.log(card1);
 
-	// postMockApiCard(card1);
-	// postMockApiCard(card2);
-	// postMockApiCard(card3);
+	await	postMockApiCard(card1);
+	await	postMockApiCard(card2);
+	await	postMockApiCard(card3);
+
+	await updateCardCounter();
 
   enableDrag();
 }

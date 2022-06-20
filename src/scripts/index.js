@@ -1,19 +1,33 @@
 import { DigitalClock } from "./components/Сlock.js";
 import { enableDrag } from "./components/Column.js";
-import {Card} from "./components/Card.js"
+import { Card } from "./components/Card.js";
 
-async function initApp() {
+function initApp() {
   const clock = new DigitalClock();
   clock.start();
 
-	const card1 = new Card ("", "title", "user", "description", "column-todo");
-	card1.render()
-	const card2 = new Card ("", "title", "user", "description", "column-todo");
-	card2.render()
-	const card3 = new Card ("", "title", "user", "description", "column-todo");
-	card3.render()
-  
+  const card1 = new Card({
+    title: "title",
+    user: { name: "Test Testovich" },
+    description: "Hello world!",
+    column: "column-todo",
+  }).render();
+
+  const card2 = new Card({
+    title: "title1",
+    user: { name: "Test Akakievich" },
+    description: "Peace!",
+    column: "column-todo",
+  }).render();
+
+  const card3 = new Card({
+    title: "title2",
+    user: { name: "Test Evkakievich" },
+    description: "Are you ready for pain?",
+    column: "column-todo",
+  }).render();
+
   enableDrag();
 }
 
-initApp();
+document.addEventListener("DOMContentLoaded", initApp);

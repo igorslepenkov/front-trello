@@ -1,14 +1,45 @@
 import { getDateTime } from "../utils/getDateTime.js";
-import {getTemplateCard, getTemplateTodoCardBtn, getTemplateInProgressCardBtn, getTemplateCompletedCardBtn} from "../utils/templates.js"
+import {
+  getTemplateCard,
+  getTemplateTodoCardBtn,
+  getTemplateInProgressCardBtn,
+  getTemplateCompletedCardBtn,
+} from "../utils/templates.js";
+import { GLOBAL_CONSTANTS } from "../utils/globalConstants.js";
 
-function Card(mockapiObject, title, user, description, column) {
-  this.id = mockapiObject.id || null;
-  this.title = mockapiObject.title || title;
-  this.user = mockapiObject.user || user;
-  this.description = mockapiObject.description || description;
-  this.column = mockapiObject.column || column;
-  this.element = document.querySelector(`#card-${mockapiObject.id}`) || null;
-  this.time = mockapiObject.time || getDateTime();
+function Card(cardDataObject) {
+  this.id = cardDataObject.id || null;
+  this.title = cardDataObject.title || "Undefined card title";
+  this.user = cardDataObject.user || { name: "Undefined username" };
+  this.description = cardDataObject.description || "Undefined card description";
+  this.column = cardDataObject.column || GLOBAL_CONSTANTS.COLUMNS.TODO;
+  this.element = document.querySelector(`#card-${cardDataObject.id}`) || null;
+  this.time = cardDataObject.time || getDateTime();
+
+  this.onDragStart = (event) => {
+    const { target } = event;
+    target.dataset.dragged = "true";
+    target.classList.add("card--dragged");
+  };
+
+  this.onDragEnd = (event) => {
+    const { target } = event;
+    target.dataset.dragged = "false";
+    target.classList.remove("card--dragged");
+
+    this.column = event.composedPath()[2].id;
+
+    const currentClass = target.classList[1];
+    if (this.column === GLOBAL_CONSTANTS.COLUMNS.TODO) {
+      target.classList.replace(currentClass, "card--todo");
+    } else if (this.column === GLOBAL_CONSTANTS.COLUMNS.IN_PROGRESS) {
+      target.classList.replace(currentClass, "card--in-progress");
+    } else if (this.column === GLOBAL_CONSTANTS.COLUMNS.DONE) {
+      target.classList.replace(currentClass, "card--complited");
+    }
+
+    this.render();
+  };
 
   this.render = () => {
     if (this.element) {
@@ -20,62 +51,44 @@ function Card(mockapiObject, title, user, description, column) {
     const cardElement = document.createElement("div");
     cardElement.id = `card-${this.id}`;
     cardElement.classList.add("card");
-		cardElement.draggable = "true";
-		cardElement.dataset.dragged = "false";
+    cardElement.draggable = "true";
+    cardElement.dataset.dragged = "false";
+
     let buttons = null;
 
-    if (column === "column-todo") {
+    if (this.column === GLOBAL_CONSTANTS.COLUMNS.TODO) {
       cardElement.classList.add("card--todo");
       appendColumn = document.querySelector("#column-todo");
       buttons = getTemplateTodoCardBtn();
-    } else if (column === "column-in-progress") {
+    } else if (this.column === GLOBAL_CONSTANTS.COLUMNS.IN_PROGRESS) {
       cardElement.classList.add("card--in-progress");
       appendColumn = document.querySelector("#column-in-progress");
       buttons = getTemplateInProgressCardBtn();
-    } else if (column === "column-completed") {
-
+    } else if (this.column === GLOBAL_CONSTANTS.COLUMNS.DONE) {
       cardElement.classList.add("card--complited");
       appendColumn = document.querySelector("#column-completed");
       buttons = getTemplateCompletedCardBtn();
     }
 
-		cardElement.addEventListener("dragstart", ({target}) => {
-			target.dataset.dragged = "true";
-			target.classList.add("card--dragged");
-		});
-
-		cardElement.addEventListener("dragend", ({target}) => {
-			target.dataset.dragged = "false";
-			target.classList.remove("card--dragged");
-			target.column =  event.composedPath()[2].id;
-			this.column = target.column;
-
-			const currentClass = target.classList[1];
-			if (target.column === "column-todo") {
-				cardElement.classList.replace(currentClass, "card--todo")
-				buttons = getTemplateTodoCardBtn();
-			} else if (target.column === "column-in-progress") {
-				cardElement.classList.replace(currentClass, "card--in-progress");
-				buttons = getTemplateInProgressCardBtn();
-			} else if (target.column === "column-completed") {
-				cardElement.classList.replace(currentClass, "card--complited");
-				buttons = getTemplateCompletedCardBtn();
-			}
-	
-			target.innerHTML = getTemplateCard(buttons, this.title, this.description, this.user.name, this.time)
-		})
-
     const appendColumnContent = appendColumn.querySelector(".column__content");
 
-		const html = getTemplateCard(buttons, this.title, this.description, this.user.name, getDateTime());
+    const html = getTemplateCard(
+      buttons,
+      this.title,
+      this.description,
+      this.user.name,
+      getDateTime()
+    );
 
     cardElement.insertAdjacentHTML("afterbegin", html);
     appendColumnContent.insertAdjacentElement("beforeend", cardElement);
-    this.element = cardElement;
-  };
 
-  this.remove = () => {
-    this.element.parentElement.removeChild(this.element);
+    cardElement.addEventListener("dragstart", (event) => {
+      this.onDragStart(event);
+    });
+    cardElement.addEventListener("dragend", (event) => this.onDragEnd(event));
+
+    this.element = cardElement;
   };
 }
 

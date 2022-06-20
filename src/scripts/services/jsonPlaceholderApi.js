@@ -10,10 +10,8 @@ async function getUserById(id) {
   return response.json();
 }
 
-async function renderSelectUsers(formElement) {
+function renderSelectUsers(formElement, users) {
   const select = document.createElement("select");
-  const users = await getAllUsers();
-  console.log(users);
   for (const user of users) {
     const option = document.createElement("option");
     option.textContent = `${user.name}`;

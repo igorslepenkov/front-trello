@@ -1,4 +1,4 @@
-const getDateTime = (mod) => {
+const getDateTime = (mode) => {
   const date = new Date();
   const day = date.getDate().toString().padStart(2, "0");
   const month = (date.getMonth() + 1).toString().padStart(2, "0");
@@ -7,9 +7,9 @@ const getDateTime = (mod) => {
   const minutes = date.getMinutes().toString().padStart(2, "0");
   const seconds = date.getSeconds().toString().padStart(2, "0");
 
-  if (mod === "date") {
+  if (mode === "date") {
     return `${day}.${month}.${year}`;
-  } else if (mod === "time") {
+  } else if (mode === "time") {
     return `${hours}:${minutes}:${seconds}`;
   } else {
     return `${day}.${month}.${year} | ${hours}:${minutes}`;

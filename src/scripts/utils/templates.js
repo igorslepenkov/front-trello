@@ -1,7 +1,7 @@
 // html templates for the card constructor function
 
-function getTemplateCard (buttons, title, description, userName, time) {
-	return `
+function getTemplateCard(buttons, title, description, userName, time) {
+  return `
 	${buttons}
 	<div class="card__details">
 		<h4 class="card__title">${title}</h4>
@@ -12,8 +12,8 @@ function getTemplateCard (buttons, title, description, userName, time) {
 `;
 }
 
-function getTemplateTodoCardBtn () {
-	return `
+function getTemplateTodoCardBtn() {
+  return `
 	<div class="card__buttons">
 		<button type="button" class="card__button card__button--edit">edit</button>
 		<button type="button" class="card__button card__button--delete">delete</button>
@@ -21,20 +21,25 @@ function getTemplateTodoCardBtn () {
 `;
 }
 
-function getTemplateInProgressCardBtn () {
-	return `
+function getTemplateInProgressCardBtn() {
+  return `
 	<div class="card__buttons">
 		<button type="button" class="card__button card__button--complete">complete</button>
 	</div>
 `;
 }
 
-function getTemplateCompletedCardBtn () {
-	return `
+function getTemplateCompletedCardBtn() {
+  return `
 	<div class="card__buttons">
 		<button type="button" class="card__button card__button--delete">delete</button>
 	</div>
 `;
 }
 
-export {getTemplateCard, getTemplateTodoCardBtn, getTemplateInProgressCardBtn, getTemplateCompletedCardBtn}
+export {
+  getTemplateCard,
+  getTemplateTodoCardBtn,
+  getTemplateInProgressCardBtn,
+  getTemplateCompletedCardBtn,
+};

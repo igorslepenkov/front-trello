@@ -1,25 +1,20 @@
 @use "../config/color.scss";
-@use "../config/mixins.scss";
 @use "../config/media.scss";
 @use "../config/base.scss";
 
 
 .desk {
-	height: 80vh;
-	padding: 5rem 5rem;
-	gap: 5rem;
 	display: flex;
 	justify-content: space-between;
+	gap: 5rem;
+	height: 90vh;
+	padding: 5rem 5rem;
 
 	@include media.lg {
-		height: 85%;
 		flex-wrap: nowrap;
+		height: 95vh;
 		overflow-y: hidden;
 		overflow-x: auto;
-	}
-
-	@include media.md {
-		height: 87%;
 	}
 }
 
@@ -41,101 +36,3 @@
 	background: color.$black;
 }
 
-.column {
-	width: 30%;
-	max-height: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	flex-shrink: 0;
-	gap: 4rem;
-	margin: 0 0 auto;
-	background: color.$grey;
-	border-radius: 10px;
-
-	@include media.lg {
-		width: 55rem;
-	}
-
-	&__header {
-		box-sizing: border-box;
-		width: 100%;
-		padding: 3rem;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-
-	&__title {
-		font-weight: 600;
-		font-size: 2.4rem;
-		color: color.$darkgrey;
-		opacity: 0.8;
-	}
-
-	&__counter {
-		font-weight: 600;
-		font-size: 2.4rem;
-		color: color.$darkgrey;
-		opacity: 0.8;
-	}
-
-	&__content {
-		max-height: 80%;
-		width: 80%;
-		margin: 1rem auto;
-		padding: 2rem;
-		display: flex;
-		flex-direction: column;
-		gap: 5rem;
-		overflow-y: auto;
-		overflow-x: hidden;
-		font-weight: 600;
-		font-size: 2.4rem;
-		opacity: 0.8;
-	}
-
-	&__content::-webkit-scrollbar {
-		width: 1rem;
-
-	}
-
-	&__content::-webkit-scrollbar-track {
-		background: color.$blue;
-
-	}
-
-	&__content::-webkit-scrollbar-thumb {
-		background: color.$richblack;
-	}
-
-	&__content::-webkit-scrollbar-thumb:hover {
-		background: color.$black;
-	}
-}
-
-#btn-add-todo {
-	@include mixins.button(color.$blue, color.$white);
-}
-
-#btn-add-todo:hover {
-	@include mixins.button(color.$darkblue, color.$white);
-}
-
-#btn-add-todo:active {
-	@include mixins.button(color.$darkblue, color.$white);
-	box-shadow: inset 0px 0px 10px #00252A;
-}
-
-#btn-delete-all {
-	@include mixins.button(color.$black, color.$white);
-}
-
-#btn-delete-all:hover {
-	@include mixins.button(color.$richblack, color.$white);
-}
-
-#btn-delete-all:active {
-	@include mixins.button(color.$richblack, color.$white);
-	box-shadow: inset 0px 0px 10px #5F5E5E;
-}

@@ -1,4 +1,5 @@
 import { getDateTime } from "../utils/getDateTime.js";
+import {getTemplateCard, getTemplateTodoCardBtn, getTemplateInProgressCardBtn, getTemplateCompletedCardBtn} from "../utils/templates.js"
 
 function Card(mockapiObject, title, user, description, column) {
   this.id = mockapiObject.id || null;
@@ -19,46 +20,54 @@ function Card(mockapiObject, title, user, description, column) {
     const cardElement = document.createElement("div");
     cardElement.id = `card-${this.id}`;
     cardElement.classList.add("card");
+		cardElement.draggable = "true";
+		cardElement.dataset.dragged = "false";
     let buttons = null;
 
-    if (this.column === "todo") {
+    if (column === "column-todo") {
       cardElement.classList.add("card--todo");
       appendColumn = document.querySelector("#column-todo");
-      buttons = `
-        <div class="card__buttons">
-          <button type="button" class="card__button--edit">edit</button>
-          <button type="button" class="card__button--delete">delete</button>
-        </div>
-      `;
-    } else if (this.column === "in-progress") {
+      buttons = getTemplateTodoCardBtn();
+    } else if (column === "column-in-progress") {
       cardElement.classList.add("card--in-progress");
       appendColumn = document.querySelector("#column-in-progress");
-      buttons = `
-        <div class="card__buttons">
-          <button type="button" class="card__buttton--complete">complete</button>
-        </div>
-      `;
-    } else if (this.column === "completed") {
+      buttons = getTemplateInProgressCardBtn();
+    } else if (column === "column-completed") {
+
       cardElement.classList.add("card--complited");
       appendColumn = document.querySelector("#column-completed");
-      buttons = `
-        <div class="card__buttons">
-          <button type="button" class="card__button--delete">delete</button>
-        </div>
-      `;
+      buttons = getTemplateCompletedCardBtn();
     }
+
+		cardElement.addEventListener("dragstart", ({target}) => {
+			target.dataset.dragged = "true";
+			target.classList.add("card--dragged");
+		});
+
+		cardElement.addEventListener("dragend", ({target}) => {
+			target.dataset.dragged = "false";
+			target.classList.remove("card--dragged");
+			target.column =  event.composedPath()[2].id;
+			this.column = target.column;
+
+			const currentClass = target.classList[1];
+			if (target.column === "column-todo") {
+				cardElement.classList.replace(currentClass, "card--todo")
+				buttons = getTemplateTodoCardBtn();
+			} else if (target.column === "column-in-progress") {
+				cardElement.classList.replace(currentClass, "card--in-progress");
+				buttons = getTemplateInProgressCardBtn();
+			} else if (target.column === "column-completed") {
+				cardElement.classList.replace(currentClass, "card--complited");
+				buttons = getTemplateCompletedCardBtn();
+			}
+	
+			target.innerHTML = getTemplateCard(buttons, this.title, this.description, this.user.name, this.time)
+		})
 
     const appendColumnContent = appendColumn.querySelector(".column__content");
 
-    const html = `
-        ${buttons}
-        <div class="card__details">
-          <h4 class="card__title">${this.title}</h4>
-          <p class="card__description">${this.description}</p>
-          <p class="card__user">${this.user.name}</p>
-          <p class="card__time">${this.time}</p>
-        </div>
-    `;
+		const html = getTemplateCard(buttons, this.title, this.description, this.user.name, getDateTime());
 
     cardElement.insertAdjacentHTML("afterbegin", html);
     appendColumnContent.insertAdjacentElement("beforeend", cardElement);

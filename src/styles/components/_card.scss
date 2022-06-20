@@ -4,85 +4,85 @@
 
 
 .card {
-    width: 100%;
-    padding: 2rem;
-    border: 1px solid black;
-    border-radius: 0.625rem;
-    box-sizing: border-box;
-    background-color: color.$lightblue;
+	width: 100%;
+	padding: 2rem;
+	border: 1px solid black;
+	border-radius: 0.625rem;
+	background-color: color.$lightblue;
 
-    &__details {
-        font-size: 2.5rem;
-        color: color.$black;
-    }
+	&__details {
+		font-size: 1.8rem;
+		color: color.$black;
+	}
 
-    &__title {
-        font-size: 3rem;
-        margin: 3rem 3rem 4rem 5rem;
-    }
+	&__title {
+		margin: 2rem 2rem 3rem 4rem;
+		font-size: 2.4rem;
+	}
 
-    &__description {
-        margin-bottom: 4rem;
-    }
+	&__description {
+		margin-bottom: 2rem;
+	}
 
-    &__user {
-        margin-bottom: 1rem;
-    }
+	&__user {
+		margin-bottom: 1rem;
+	}
 
-    &__buttons {
-        display: flex;
-        justify-content: flex-end;
-    }
+	&__buttons {
+		display: flex;
+		justify-content: flex-end;
+		gap: 0.5rem	
+	}
 
-    &__buttons button {
-        max-width: 100%;
-        font-size: 2rem;
-        border-radius: 0.5rem;
-        font-weight: 900;
-        text-transform: uppercase;
-        color: color.$black;
-        background: color.$gradient;
-        cursor: pointer;
-    }
+	&__button {
+		max-width: 100%;
+		font-size: 1.4rem;
+		font-weight: 900;
+		text-transform: uppercase;
+		color: color.$white;
+		border-radius: 0.5rem;
+		cursor: pointer;
+	}
 
-    &__button--edit {
-        margin-right: 1.5rem;
-    }
+	&__button--edit {
+		background: color.$blue;
+	}
 
-    &__time {
-        margin: 0 auto;
-        text-align: end;
-        font-size: 1.9rem;
-        color: color.$black;
-    }
+	&__button--complete {
+		background: color.$blue;
+	}
 
-    &--todo {
-        &:nth-child(even) {
-            background-color: color.$lightviolet;
-        }
+	&__button--delete {
+		background: color.$richblack;
+	}
 
-        &:nth-child(odd) {
-            background-color: color.$aquamarine;
-        }
-    }
+	&__time {
+		margin: 0 auto;
+		font-size: 1.8rem;
+		text-align: end;
+		color: color.$black;
+	}
 
-    &--in-progress {
-        &:nth-child(even) {
-            background-color: color.$lightblue;
-        }
+	&--todo {
+		background-color: color.$grey;
+	}
 
-        &:nth-child(odd) {
-            background-color: color.$powderpink;
-        }
-    }
+	&--in-progress {
+		background-color: color.$lightblue;
+	}
 
-    &--completed {
-        &:nth-child(even) {
-            background-color: color.$violet;
-        }
+	&--complited {
+		background-color: color.$violet;
 
-        &:nth-child(odd) {
-            background-color: color.$coral;
-        }
-    }
+		.card__details {
+			color: color.$richblack;
+		}
+		.card__time {
+			color: color.$richblack;
+		}
+	}
+
+	&--dragged {
+		background: color.$blue;
+	}
 }

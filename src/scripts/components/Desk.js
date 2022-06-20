@@ -6,10 +6,11 @@ function enableDrag() {
 	const columns = document.querySelectorAll(".column");
 
 	columns.forEach(column => {
-		column.addEventListener("dragover", onColumnDrop)
+		column.addEventListener("dragover", onColumnDragover)
+		column.addEventListener("drop", () => updateCardCounter())
 	})
 
-	function onColumnDrop(event) {
+	function onColumnDragover(event) {
 		event.preventDefault();
 		const {currentTarget, clientY} = event;
 		
@@ -41,6 +42,7 @@ function enableDrag() {
 		return appendPlace
 	}
 }
+
 
 const updateCardCounter = async () => {
 	const cards = await getMockApiCards();

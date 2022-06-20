@@ -1,3 +1,5 @@
+import {getMockApiCards} from "../services/mockapi.js"
+
 function enableDrag() {
 
 	const columns = document.querySelectorAll(".column");
@@ -38,6 +40,11 @@ function enableDrag() {
 		return appendPlace
 	}
 }
+
+// const updateCardCounter = async () => {
+// 	const cards = await getMockApiCards()
+// 	console.log(cards);
+// }
 
 
 

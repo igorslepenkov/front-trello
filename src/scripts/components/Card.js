@@ -89,6 +89,8 @@ function Card(cardDataObject) {
     cardElement.addEventListener("dragend", (event) => this.onDragEnd(event));
 
     this.element = cardElement;
+
+		return this
   };
 }
 

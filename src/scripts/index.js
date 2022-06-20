@@ -1,6 +1,7 @@
 import { DigitalClock } from "./components/Сlock.js";
-import { enableDrag } from "./components/Column.js";
+import { enableDrag } from "./components/Desk";
 import { Card } from "./components/Card.js";
+import { postMockApiCard } from "./services/mockapi.js"
 
 function initApp() {
   const clock = new DigitalClock();
@@ -26,6 +27,12 @@ function initApp() {
     description: "Are you ready for pain?",
     column: "column-todo",
   }).render();
+
+	console.log(card1);
+
+	// postMockApiCard(card1);
+	// postMockApiCard(card2);
+	// postMockApiCard(card3);
 
   enableDrag();
 }

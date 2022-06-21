@@ -37,9 +37,17 @@ function getTemplateCompletedCardBtn() {
 `;
 }
 
+function getFormButtons() {
+  return `
+		<button type="button" class="form__button--cancel" data-action="cancel">Cancel</button>
+		<button type="button" class="form__button--confirm" data-action="confirm">Confirm</button>
+	`;
+}
+
 export {
   getTemplateCard,
   getTemplateTodoCardBtn,
   getTemplateInProgressCardBtn,
   getTemplateCompletedCardBtn,
+  getFormButtons,
 };

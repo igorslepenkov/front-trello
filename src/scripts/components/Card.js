@@ -1,4 +1,3 @@
-import { getDateTime } from "../utils/getDateTime.js";
 import {
   getTemplateCard,
   getTemplateTodoCardBtn,
@@ -16,7 +15,7 @@ function Card(cardDataObject) {
   this.description = cardDataObject.description || "Undefined card description";
   this.column = cardDataObject.column || GLOBAL_CONSTANTS.COLUMNS.TODO;
   this.element = document.querySelector(`#card-${cardDataObject.id}`) || null;
-  this.time = cardDataObject.time || getDateTime();
+  this.time = cardDataObject.time;
 
   this.onDragStart = (event) => {
     const { target } = event;
@@ -40,13 +39,12 @@ function Card(cardDataObject) {
       target.classList.replace(currentClass, "card--complited");
     }
 
-		await updateMockApiCard(this);
-		await updateCardCounter();
+    await updateMockApiCard(this);
+    await updateCardCounter();
     this.render();
-	};
+  };
 
   this.onClick = async ({ target }) => {
-    console.log("hello");
     if (target.dataset.action === "delete") {
       this.element.remove();
       await deleteMockApiCard(this);
@@ -93,7 +91,7 @@ function Card(cardDataObject) {
       this.title,
       this.description,
       this.user.name,
-      getDateTime()
+      this.time
     );
 
     cardElement.insertAdjacentHTML("afterbegin", html);

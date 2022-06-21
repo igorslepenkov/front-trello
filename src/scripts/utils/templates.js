@@ -16,7 +16,7 @@ function getTemplateTodoCardBtn() {
   return `
 	<div class="card__buttons">
 		<button type="button" class="card__button card__button--edit">edit</button>
-		<button type="button" class="card__button card__button--delete">delete</button>
+		<button type="button" class="card__button card__button--delete" data-action="delete">delete</button>
 	</div>
 `;
 }
@@ -24,7 +24,7 @@ function getTemplateTodoCardBtn() {
 function getTemplateInProgressCardBtn() {
   return `
 	<div class="card__buttons">
-		<button type="button" class="card__button card__button--complete">complete</button>
+		<button type="button" class="card__button card__button--complete" data-action="complete">complete</button>
 	</div>
 `;
 }
@@ -32,7 +32,7 @@ function getTemplateInProgressCardBtn() {
 function getTemplateCompletedCardBtn() {
   return `
 	<div class="card__buttons">
-		<button type="button" class="card__button card__button--delete">delete</button>
+		<button type="button" class="card__button card__button--delete" data-action="delete">delete</button>
 	</div>
 `;
 }

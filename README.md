@@ -17,11 +17,11 @@
 -->
 
 [![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][https://github.com/igorslepenkov/front-trello/network/members]
-[![Stargazers][stars-shield]][https://github.com/igorslepenkov/front-trello/stargazers]
-[![Issues][issues-shield]][https://github.com/igorslepenkov/front-trello/issues]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][https://www.linkedin.com/in/игорь-слепенков-b17704198]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
 <br />
@@ -71,8 +71,6 @@
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -146,7 +144,7 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/igorslepenkov/front-trello.svg?style=for-the-badge
 [contributors-url]: https://github.com/igorslepenkov/front-trello/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/igorslepenkov/front-trello.svg?style=for-the-badge
 [forks-url]: https://github.com/igorslepenkov/front-trello/network/members

@@ -6,6 +6,7 @@ import {
   getTemplateCompletedCardBtn,
 } from "../utils/templates.js";
 import { GLOBAL_CONSTANTS } from "../utils/globalConstants.js";
+import { deleteMockApiCard, updateMockApiCard } from "../services/mockApi.js";
 
 function Card(cardDataObject) {
   this.id = cardDataObject.id || null;
@@ -39,6 +40,18 @@ function Card(cardDataObject) {
     }
 
     this.render();
+  };
+
+  this.onClick = async ({ target }) => {
+    console.log("hello");
+    if (target.dataset.action === "delete") {
+      this.element.remove();
+      await deleteMockApiCard(this);
+    } else if (target.dataset.action === "complete") {
+      this.column = GLOBAL_CONSTANTS.COLUMNS.DONE;
+      await updateMockApiCard(this);
+      this.render();
+    }
   };
 
   this.render = () => {
@@ -87,6 +100,7 @@ function Card(cardDataObject) {
       this.onDragStart(event);
     });
     cardElement.addEventListener("dragend", (event) => this.onDragEnd(event));
+    cardElement.addEventListener("click", this.onClick);
 
     this.element = cardElement;
   };

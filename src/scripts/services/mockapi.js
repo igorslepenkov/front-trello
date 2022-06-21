@@ -73,7 +73,7 @@ const deleteMockApiCard = async (card) => {
     options
   );
   const response = await fetch(request);
-  if (response.status === 204) {
+  if (response.status === 200) {
     return;
   } else {
     throw new Error(response.status);

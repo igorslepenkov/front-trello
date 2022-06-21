@@ -58,7 +58,6 @@ const updateCardCounter = async () => {
 	counterInProgress.textContent = inProgress.length;
 	counterDone.textContent = done.length;
 
-	console.log(cards);
 }
 
 export { enableDrag, updateCardCounter };

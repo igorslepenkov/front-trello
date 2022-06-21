@@ -2,6 +2,7 @@ import { DigitalClock } from "./components/Сlock.js";
 import { enableDrag, updateCardCounter } from "./components/Desk.js";
 import { Card } from "./components/Card.js";
 import { getMockApiCards } from "./services/mockApi.js";
+import { enableWarningModal } from "./components/WarningModal.js"
 
 async function initApp() {
   const clock = new DigitalClock();
@@ -15,7 +16,8 @@ async function initApp() {
 	
 	await updateCardCounter();
   
-  enableDrag();
+  enableDrag();;
+	enableWarningModal() 
 }
 
 document.addEventListener("DOMContentLoaded", initApp);

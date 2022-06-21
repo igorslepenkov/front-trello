@@ -58,11 +58,9 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -152,8 +150,8 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [stars-url]: https://github.com/igorslepenkov/front-trello/stargazers
 [issues-shield]: https://img.shields.io/github/issues/igorslepenkov/front-trello.svg?style=for-the-badge
 [issues-url]: https://github.com/igorslepenkov/front-trello/issues
-[license-shield]: https://img.shields.io/github/igorslepenkov/front-trello.svg?style=for-the-badge
-[license-url]: https://github.com/igorslepenkov/front-trello/blob/main/LICENSE.txt
+[license-shield]: https://img.shields.io/github/license/igorslepenkov/front-trello.svg?style=for-the-badge
+[license-url]: https://github.com/igorslepenkov/front-trello/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/игорь-слепенков
+[linkedin-url]: https://linkedin.com/in/игорь-слепенков-b17704198
 [product-screenshot]: images/screenshot.png

@@ -1,4 +1,4 @@
-import {getMockApiCards} from "../services/mockapi.js";
+import { getMockApiCards } from "../services/mockapi.js";
 import { GLOBAL_CONSTANTS } from "../utils/globalConstants.js";
 
 function enableDrag() {
@@ -7,13 +7,12 @@ function enableDrag() {
 
 	columns.forEach(column => {
 		column.addEventListener("dragover", onColumnDragover)
-		column.addEventListener("drop", () => updateCardCounter())
 	})
 
 	function onColumnDragover(event) {
 		event.preventDefault();
-		const {currentTarget, clientY} = event;
-		
+		const { currentTarget, clientY } = event;
+
 		const cardsContainer = currentTarget.children[1];
 		const dragged = document.querySelector(`[data-dragged='true']`);
 
@@ -22,7 +21,7 @@ function enableDrag() {
 
 
 		if (appendPlace == Number.NEGATIVE_INFINITY) {
-				cardsContainer.appendChild(dragged);
+			cardsContainer.appendChild(dragged);
 		} else cardsContainer.insertBefore(dragged, appendPlace);
 	}
 
@@ -62,4 +61,4 @@ const updateCardCounter = async () => {
 	console.log(cards);
 }
 
-export {enableDrag, updateCardCounter};
+export { enableDrag, updateCardCounter };

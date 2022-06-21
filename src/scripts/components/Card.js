@@ -7,6 +7,7 @@ import {
 } from "../utils/templates.js";
 import { GLOBAL_CONSTANTS } from "../utils/globalConstants.js";
 import { updateMockApiCard } from "../services/mockapi.js";
+import { updateCardCounter } from "./Desk.js";
 
 function Card(cardDataObject) {
   this.id = cardDataObject.id || null;
@@ -23,7 +24,7 @@ function Card(cardDataObject) {
     target.classList.add("card--dragged");
   };
 
-  this.onDragEnd = (event) => {
+  this.onDragEnd = async (event) => {
     const { target } = event;
     target.dataset.dragged = "false";
     target.classList.remove("card--dragged");
@@ -39,7 +40,8 @@ function Card(cardDataObject) {
       target.classList.replace(currentClass, "card--complited");
     }
 
-		updateMockApiCard(this);
+		await updateMockApiCard(this);
+		await updateCardCounter();
     this.render();
 	};
 

@@ -7,17 +7,16 @@ import { enableWarningModal } from "./components/WarningModal.js"
 async function initApp() {
   const clock = new DigitalClock();
   clock.start();
-  
+
   const cards = await getMockApiCards();
-	cards.forEach(card => {
-		const cardElement = new Card(card);
-		cardElement.render();
-	});
-	
-	await updateCardCounter();
-  
-  enableDrag();;
-	enableWarningModal() 
+  cards.forEach((card) => {
+    const cardElement = new Card(card);
+    cardElement.render();
+  });
+
+  await updateCardCounter();
+
+  enableDrag();
 }
 
 document.addEventListener("DOMContentLoaded", initApp);

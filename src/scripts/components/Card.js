@@ -1,4 +1,3 @@
-import { getDateTime } from "../utils/getDateTime.js";
 import {
   getTemplateCard,
   getTemplateTodoCardBtn,
@@ -8,17 +7,21 @@ import {
 import { GLOBAL_CONSTANTS } from "../utils/globalConstants.js";
 import { updateCardCounter } from "./Desk.js";
 import { deleteMockApiCard, updateMockApiCard } from "../services/mockApi.js";
+<<<<<<< HEAD
 import { popWarningModal } from "./WarningModal.js"
 
+=======
+import { AddEditForm } from "./AddEditForm.js";
+>>>>>>> develop
 
 function Card(cardDataObject) {
   this.id = cardDataObject.id || null;
   this.title = cardDataObject.title || "Undefined card title";
   this.user = cardDataObject.user || { name: "Undefined username" };
   this.description = cardDataObject.description || "Undefined card description";
-  this.column = cardDataObject.column || GLOBAL_CONSTANTS.COLUMNS.TODO;
+  this.column = cardDataObject.column;
   this.element = document.querySelector(`#card-${cardDataObject.id}`) || null;
-  this.time = cardDataObject.time || getDateTime();
+  this.time = cardDataObject.time;
 
   this.onDragStart = (event) => {
     const { target } = event;
@@ -48,13 +51,12 @@ function Card(cardDataObject) {
       target.classList.replace(currentClass, "card--complited");
     }
 
-		await updateMockApiCard(this);
-		await updateCardCounter();
+    await updateMockApiCard(this);
+    await updateCardCounter();
     this.render();
-	};
+  };
 
   this.onClick = async ({ target }) => {
-    console.log("hello");
     if (target.dataset.action === "delete") {
       this.element.remove();
       await deleteMockApiCard(this);
@@ -62,6 +64,8 @@ function Card(cardDataObject) {
       this.column = GLOBAL_CONSTANTS.COLUMNS.DONE;
       await updateMockApiCard(this);
       this.render();
+    } else if (target.dataset.action === "edit") {
+      new AddEditForm(this);
     }
   };
 
@@ -101,7 +105,7 @@ function Card(cardDataObject) {
       this.title,
       this.description,
       this.user.name,
-      getDateTime()
+      this.time
     );
 
     cardElement.insertAdjacentHTML("afterbegin", html);

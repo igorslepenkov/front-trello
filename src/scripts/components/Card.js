@@ -7,12 +7,7 @@ import {
 import { GLOBAL_CONSTANTS } from "../utils/globalConstants.js";
 import { updateCardCounter } from "./Desk.js";
 import { deleteMockApiCard, updateMockApiCard } from "../services/mockApi.js";
-<<<<<<< HEAD
-import { popWarningModal } from "./WarningModal.js"
-
-=======
 import { AddEditForm } from "./AddEditForm.js";
->>>>>>> develop
 
 function Card(cardDataObject) {
   this.id = cardDataObject.id || null;

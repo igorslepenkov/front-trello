@@ -79,10 +79,4 @@ const updateCardCounter = async () => {
   counterDone.textContent = done.length;
 };
 
-<<<<<<< HEAD
-}
-
 export { enableDrag, updateCardCounter };
-=======
-export { enableDrag, updateCardCounter };
->>>>>>> develop

@@ -15,6 +15,13 @@
 		opacity: 0.8;
 	}
 
+	&__message {
+		text-align: center;
+		font-size: 2rem;
+		color: color.$darkgrey;
+		opacity: 0.8;
+	}
+
 	&__buttons {
 		display: flex;
 		justify-content: center;

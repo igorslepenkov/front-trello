@@ -8,6 +8,7 @@ import { GLOBAL_CONSTANTS } from "../utils/globalConstants.js";
 import { updateCardCounter } from "./Desk.js";
 import { deleteMockApiCard, updateMockApiCard } from "../services/mockApi.js";
 import { AddEditForm } from "./AddEditForm.js";
+import { CreateWarningModal } from "./WarningModal.js";
 
 function Card(cardDataObject) {
   this.id = cardDataObject.id || null;
@@ -30,10 +31,11 @@ function Card(cardDataObject) {
     target.classList.remove("card--dragged");
 
 		const inProgressCounterValue = document.getElementById(GLOBAL_CONSTANTS.COUNTERS.IN_PROGRESS).textContent;
-		console.log(inProgressCounterValue);
 		const dropColumn = event.composedPath()[2];
     if (dropColumn.id === GLOBAL_CONSTANTS.COLUMNS.IN_PROGRESS && inProgressCounterValue >= 6) {
-			popWarningModal(event);
+			const modal = new CreateWarningModal(event);
+			modal.render();
+			modal.popup();
 			event.stopPropagation();
 		} else this.column = event.composedPath()[2].id;		
 

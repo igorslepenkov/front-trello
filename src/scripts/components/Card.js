@@ -7,13 +7,14 @@ import {
 import { GLOBAL_CONSTANTS } from "../utils/globalConstants.js";
 import { updateCardCounter } from "./Desk.js";
 import { deleteMockApiCard, updateMockApiCard } from "../services/mockApi.js";
+import { AddEditForm } from "./AddEditForm.js";
 
 function Card(cardDataObject) {
   this.id = cardDataObject.id || null;
   this.title = cardDataObject.title || "Undefined card title";
   this.user = cardDataObject.user || { name: "Undefined username" };
   this.description = cardDataObject.description || "Undefined card description";
-  this.column = cardDataObject.column || GLOBAL_CONSTANTS.COLUMNS.TODO;
+  this.column = cardDataObject.column;
   this.element = document.querySelector(`#card-${cardDataObject.id}`) || null;
   this.time = cardDataObject.time;
 
@@ -52,6 +53,8 @@ function Card(cardDataObject) {
       this.column = GLOBAL_CONSTANTS.COLUMNS.DONE;
       await updateMockApiCard(this);
       this.render();
+    } else if (target.dataset.action === "edit") {
+      new AddEditForm(this);
     }
   };
 

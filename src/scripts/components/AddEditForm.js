@@ -3,29 +3,39 @@ import { getFormButtons } from "../utils/templates.js";
 import { updateMockApiCard, postMockApiCard } from "../services/mockapi.js";
 import { Card } from "./Card.js";
 import { getDateTime } from "../utils/getDateTime.js";
+import { GLOBAL_CONSTANTS } from "../utils/globalConstants.js";
 
 function AddEditForm(cardToEdit = null) {
   this.getUsersSelectElement = (formElement, users) => {
     const select = document.createElement("select");
+
     for (const user of users) {
       const option = document.createElement("option");
       option.textContent = `${user.name}`;
       option.value = `${user.id}`;
+
       select.insertAdjacentElement("beforeend", option);
+
+      if (cardToEdit && cardToEdit.user.id === user.id) {
+        option.selected = true;
+      }
     }
+
     formElement.insertAdjacentElement("beforeend", select);
+
     return select;
   };
 
   this.editCard = async (card) => {
     card.title = this.titleInput.value;
     card.description = this.descriptionInput.value;
+    card.user = await getUserById(this.select.value);
 
-    card.user = users.find((user) => user.id === select.value);
+    const newCard = new Card(await updateMockApiCard(card));
 
-    await updateMockApiCard(card);
+    newCard.render();
 
-    card.render();
+    this.remove();
   };
 
   this.addCard = async () => {
@@ -36,6 +46,7 @@ function AddEditForm(cardToEdit = null) {
       description: this.descriptionInput.value,
       user,
       time: getDateTime(),
+      column: GLOBAL_CONSTANTS.COLUMNS.TODO,
     };
 
     const card = await postMockApiCard(cardData);
@@ -45,17 +56,18 @@ function AddEditForm(cardToEdit = null) {
   this.onClick = async ({ target }) => {
     if (target.dataset.action === "cancel") {
       this.wrapper.remove();
-    } else if (target.dataset.action === "cancel") {
+    } else if (target.dataset.action === "confirm") {
       if (this.form.name === "edit") {
         await this.editCard(cardToEdit);
       } else if (this.form.name === "add") {
         await this.addCard();
+        this.remove();
       }
     }
   };
 
   this.render = async () => {
-    const desk = document.querySelector("#desk");
+    const container = document.querySelector("#container");
     const wrapper = document.createElement("div");
     const form = document.createElement("form");
 
@@ -70,18 +82,15 @@ function AddEditForm(cardToEdit = null) {
 
     wrapper.classList.add("form--wrapper");
     form.classList.add("form");
+    cardToEdit ? (form.name = "edit") : (form.name = "add");
     titleInput.classList.add("form__title-input");
     descriptionInput.classList.add("form__description-input");
+    select.classList.add("form__select-user-input");
     buttons.classList.add("form__buttons");
 
     if (cardToEdit) {
       titleInput.value = cardToEdit.title;
       descriptionInput.value = cardToEdit.description;
-
-      const currentUser = select
-        .querySelectorAll("options")
-        .find((option) => option.value === cardToEdit.user.id);
-      currentUser.selected = true;
     }
 
     form.addEventListener("click", this.onClick);
@@ -93,13 +102,17 @@ function AddEditForm(cardToEdit = null) {
 
     wrapper.insertAdjacentElement("beforeend", form);
 
-    desk.insertAdjacentElement("beforeend", wrapper);
+    container.insertAdjacentElement("beforeend", wrapper);
 
     this.wrapper = wrapper;
     this.form = form;
     this.titleInput = titleInput;
     this.descriptionInput = descriptionInput;
     this.select = select;
+  };
+
+  this.remove = () => {
+    this.wrapper.remove();
   };
 
   this.render();

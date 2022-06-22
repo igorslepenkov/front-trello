@@ -15,6 +15,12 @@
 		opacity: 0.8;
 	}
 
+	&__buttons {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+	}
+
 	&__button {
 		display: inline-block;
 		font-size: 1.4rem;

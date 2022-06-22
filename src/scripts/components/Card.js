@@ -57,9 +57,11 @@ function Card(cardDataObject) {
     if (target.dataset.action === "delete") {
       this.element.remove();
       await deleteMockApiCard(this);
+			await updateCardCounter()
     } else if (target.dataset.action === "complete") {
       this.column = GLOBAL_CONSTANTS.COLUMNS.DONE;
       await updateMockApiCard(this);
+			await updateCardCounter()
       this.render();
     } else if (target.dataset.action === "edit") {
       new AddEditForm(this);

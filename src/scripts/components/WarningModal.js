@@ -1,9 +1,10 @@
 import { throws } from "assert";
 
-function CreateWarningModal({type}) {
+function CreateWarningModal(event) {
 	this.modal = null;
 	this.message = "";
-	if (type === "dragend") {
+	this.event = event
+	if (this.event.type === "dragend") {
 		this.message = "Please, complete current tasks before starting new ones!";
 	}
 	console.log(this.message);
@@ -38,11 +39,13 @@ function CreateWarningModal({type}) {
 		confirmBtn.textContent = "Confirm";
 
 		confirmBtn.addEventListener('click', () => {
+			this.event.stopPropagation();
 			modal.close();
 			this.modal.remove();
 		});
 	
 		cancelBtn.addEventListener('click', () => {
+			this.event.stopPropagation();
 			modal.close();
 			this.modal.remove();
 		});

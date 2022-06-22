@@ -4,6 +4,7 @@ import { updateMockApiCard, postMockApiCard } from "../services/mockapi.js";
 import { Card } from "./Card.js";
 import { getDateTime } from "../utils/getDateTime.js";
 import { GLOBAL_CONSTANTS } from "../utils/globalConstants.js";
+import { updateCardCounter } from "./Desk.js";
 
 function AddEditForm(cardToEdit = null) {
   this.getUsersSelectElement = (formElement, users) => {
@@ -50,6 +51,7 @@ function AddEditForm(cardToEdit = null) {
     };
 
     const card = await postMockApiCard(cardData);
+		await updateCardCounter()
     new Card(card).render();
   };
 

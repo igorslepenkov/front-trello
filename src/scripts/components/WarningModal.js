@@ -51,7 +51,9 @@ function CreateWarningModal(event) {
 			this.modal.remove();
 		});
 
-		buttonsContainer.append(cancelBtn, confirmBtn);
+		if (this.event.target.id === "btn-delete-all") {
+			buttonsContainer.append(cancelBtn, confirmBtn);
+		} else 		buttonsContainer.append(confirmBtn);
 		modal.append(title, message, buttonsContainer)
 		container.append(modal)
 

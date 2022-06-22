@@ -5,7 +5,7 @@ import {
   getTemplateCompletedCardBtn,
 } from "../utils/templates.js";
 import { GLOBAL_CONSTANTS } from "../utils/globalConstants.js";
-import { updateCardCounter } from "./Desk.js";
+import { updateCardCounter, checkInProgressCounter } from "./Desk.js";
 import { deleteMockApiCard, updateMockApiCard } from "../services/mockApi.js";
 import { AddEditForm } from "./AddEditForm.js";
 import { CreateWarningModal } from "./WarningModal.js";
@@ -30,9 +30,7 @@ function Card(cardDataObject) {
     target.dataset.dragged = "false";
     target.classList.remove("card--dragged");
 
-		const inProgressCounterValue = document.getElementById(GLOBAL_CONSTANTS.COUNTERS.IN_PROGRESS).textContent;
-		const dropColumn = event.composedPath()[2];
-    if (dropColumn.id === GLOBAL_CONSTANTS.COLUMNS.IN_PROGRESS && inProgressCounterValue >= 6) {
+    if (checkInProgressCounter(event)) {
 			const modal = new CreateWarningModal(event);
 			modal.render();
 			event.stopPropagation();

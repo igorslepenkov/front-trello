@@ -80,6 +80,14 @@ const updateCardCounter = async () => {
   counterDone.textContent = done.length;
 };
 
+function checkInProgressCounter (event) {
+	const inProgressCounterValue = document.getElementById(GLOBAL_CONSTANTS.COUNTERS.IN_PROGRESS).textContent;
+	const dropColumn = event.composedPath()[2];
+	const checkResult = dropColumn.id === GLOBAL_CONSTANTS.COLUMNS.IN_PROGRESS && inProgressCounterValue >= 6
+
+	return checkResult
+}
+
 const removeAllCompletedCards = async () => {
   const cards = await getMockApiCards();
 
@@ -93,4 +101,4 @@ const removeAllCompletedCards = async () => {
   await updateCardCounter();
 };
 
-export { enableDrag, updateCardCounter };
+export { enableDrag, updateCardCounter, checkInProgressCounter };

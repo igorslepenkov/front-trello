@@ -35,7 +35,6 @@ function Card(cardDataObject) {
     if (dropColumn.id === GLOBAL_CONSTANTS.COLUMNS.IN_PROGRESS && inProgressCounterValue >= 6) {
 			const modal = new CreateWarningModal(event);
 			modal.render();
-			modal.popup();
 			event.stopPropagation();
 		} else this.column = event.composedPath()[2].id;		
 

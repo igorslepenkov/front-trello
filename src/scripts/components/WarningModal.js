@@ -1,5 +1,3 @@
-import { throws } from "assert";
-
 function CreateWarningModal(event) {
 	this.modal = null;
 	this.message = "";
@@ -7,7 +5,6 @@ function CreateWarningModal(event) {
 	if (this.event.type === "dragend") {
 		this.message = "Please, complete current tasks before starting new ones!";
 	}
-	console.log(this.message);
 
 	this.render = () => {
     const container = document.querySelector("#container");
@@ -39,14 +36,10 @@ function CreateWarningModal(event) {
 		confirmBtn.textContent = "Confirm";
 
 		confirmBtn.addEventListener('click', () => {
-			this.event.stopPropagation();
-			modal.close();
 			this.modal.remove();
 		});
 	
 		cancelBtn.addEventListener('click', () => {
-			this.event.stopPropagation();
-			modal.close();
 			this.modal.remove();
 		});
 
@@ -54,11 +47,9 @@ function CreateWarningModal(event) {
 		modal.append(title, message, buttonsContainer)
 		container.append(modal)
 
-		this.modal = modal;
-	}
+		modal.showModal();
 
-	this.popup = () => {
-		this.modal.showModal();
+		this.modal = modal;
 	}
 
 	this.remove = () => {

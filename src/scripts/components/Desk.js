@@ -1,6 +1,7 @@
-import { getMockApiCards } from "../services/mockapi.js";
+import { getMockApiCards, deleteMockApiCard } from "../services/mockapi.js";
 import { GLOBAL_CONSTANTS } from "../utils/globalConstants.js";
 import { AddEditForm } from "./AddEditForm.js";
+import { Card } from "./Card.js";
 
 const todoColumn = document.querySelector(`#${GLOBAL_CONSTANTS.COLUMNS.TODO}`);
 const inProgressColumn = document.querySelector(
@@ -77,6 +78,19 @@ const updateCardCounter = async () => {
   counterTodo.textContent = todo.length;
   counterInProgress.textContent = inProgress.length;
   counterDone.textContent = done.length;
+};
+
+const removeAllCompletedCards = async () => {
+  const cards = await getMockApiCards();
+
+  for (const card of cards) {
+    if (card.column === GLOBAL_CONSTANTS.COLUMNS.DONE) {
+      await deleteMockApiCard(card);
+      const cardElement = document.querySelector(`#card-${card.id}`);
+      cardElement.remove();
+    }
+  }
+  await updateCardCounter();
 };
 
 export { enableDrag, updateCardCounter };

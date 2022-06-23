@@ -53,17 +53,19 @@ function AddEditForm(cardToEdit = null) {
     const card = await postMockApiCard(cardData);
 		await updateCardCounter()
     new Card(card).render();
+    this.remove();
+
+    await updateCardCounter();
   };
 
   this.onClick = async ({ target }) => {
     if (target.dataset.action === "cancel") {
-      this.wrapper.remove();
+      this.remove();
     } else if (target.dataset.action === "confirm") {
       if (this.form.name === "edit") {
         await this.editCard(cardToEdit);
       } else if (this.form.name === "add") {
         await this.addCard();
-        this.remove();
       }
     }
   };

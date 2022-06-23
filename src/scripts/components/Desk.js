@@ -4,15 +4,9 @@ import { AddEditForm } from "./AddEditForm.js";
 import { Card } from "./Card.js";
 import { CreateWarningModal } from "./WarningModal.js";
 
-const todoColumn = document.querySelector(`#${GLOBAL_CONSTANTS.COLUMNS.TODO}`);
-const inProgressColumn = document.querySelector(
-  `#${GLOBAL_CONSTANTS.COLUMNS.IN_PROGRESS}`
-);
-const doneColumn = document.querySelector(`#${GLOBAL_CONSTANTS.COLUMNS.DONE}`);
-
-const addBtn = todoColumn.querySelector("#btn-add-todo");
+const addBtn = document.querySelector("#btn-add-todo");
 addBtn.addEventListener("click", () => {
-  const form = new AddEditForm();
+  new AddEditForm();
 });
 
 const deleteCompletedBtn = document.querySelector("#btn-delete-all")

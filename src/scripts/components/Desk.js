@@ -89,14 +89,13 @@ const updateCardCounter = async () => {
 
 function checkInProgressCounter (event) {
 	const inProgressCounterValue = document.getElementById(GLOBAL_CONSTANTS.COUNTERS.IN_PROGRESS).textContent;
-	const checkResult = null 
+	let checkResult = null; 
 	if (event.type === "dragend") {
 		const dropColumn = event.composedPath()[2];
 		checkResult = dropColumn.id === GLOBAL_CONSTANTS.COLUMNS.IN_PROGRESS && inProgressCounterValue >= 6
 	} else {
-		checkResult
+		checkResult 
 	}
-
 	return checkResult
 }
 

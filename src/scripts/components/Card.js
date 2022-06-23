@@ -31,10 +31,10 @@ function Card(cardDataObject) {
     target.classList.remove("card--dragged");
 
     if (checkInProgressCounter(event)) {
-			const modal = new CreateWarningModal(event);
-			modal.render();
-			event.stopPropagation();
-		} else this.column = event.composedPath()[2].id;		
+      const modal = new CreateWarningModal(event);
+      modal.render();
+      event.stopPropagation();
+    } else this.column = event.composedPath()[2].id;
 
     const currentClass = target.classList[1];
     if (this.column === GLOBAL_CONSTANTS.COLUMNS.TODO) {
@@ -51,15 +51,16 @@ function Card(cardDataObject) {
     await updateCardCounter();
   };
 
-  this.onClick = async ({ target }) => {
+  this.onClick = async (event) => {
+    const { target } = event;
     if (target.dataset.action === "delete") {
       this.element.remove();
       await deleteMockApiCard(this);
-			await updateCardCounter()
+      await updateCardCounter();
     } else if (target.dataset.action === "complete") {
       this.column = GLOBAL_CONSTANTS.COLUMNS.DONE;
       await updateMockApiCard(this);
-			await updateCardCounter()
+      await updateCardCounter();
       this.render();
       await updateCardCounter();
     } else if (target.dataset.action === "edit") {
@@ -68,7 +69,13 @@ function Card(cardDataObject) {
       target.dataset.action === "forward" ||
       target.parentElement.dataset.action === "forward"
     ) {
-      await this.moveForward();
+      if (checkInProgressCounter(event, GLOBAL_CONSTANTS.COLUMNS.IN_PROGRESS)) {
+        const modal = new CreateWarningModal(event);
+        modal.render();
+        event.stopPropagation();
+      } else {
+        await this.moveForward();
+      }
     } else if (
       target.dataset.action === "back" ||
       target.parentElement.dataset.action === "back"

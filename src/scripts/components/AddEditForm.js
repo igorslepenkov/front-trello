@@ -51,7 +51,7 @@ function AddEditForm(cardToEdit = null) {
     };
 
     const card = await postMockApiCard(cardData);
-		await updateCardCounter()
+    await updateCardCounter();
     new Card(card).render();
     this.remove();
 

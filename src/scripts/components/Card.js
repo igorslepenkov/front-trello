@@ -69,7 +69,10 @@ function Card(cardDataObject) {
       target.dataset.action === "forward" ||
       target.parentElement.dataset.action === "forward"
     ) {
-      if (checkInProgressCounter(event, GLOBAL_CONSTANTS.COLUMNS.IN_PROGRESS)) {
+      if (
+        this.column === GLOBAL_CONSTANTS.COLUMNS.TODO &&
+        checkInProgressCounter(event, GLOBAL_CONSTANTS.COLUMNS.IN_PROGRESS)
+      ) {
         const modal = new CreateWarningModal(event);
         modal.render();
         event.stopPropagation();

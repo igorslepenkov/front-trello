@@ -79,10 +79,26 @@
 
             .form__button--cancel{
                 background-color: color.$coral;
+                
+                &:hover {
+                    background-color: color.$lightcoral;
+                }
+
+                &:active{
+                    box-shadow: inset 0px 0px 10px #00252A;
+                }
             }
 
             .form__button--confirm{
                 background-color: color.$yellow;
+
+                &:hover {
+                    background-color: color.$lightyellow;
+                }
+
+                &:active{
+                    box-shadow: inset 0px 0px 10px #00252A;
+                }
             }
         }
     }

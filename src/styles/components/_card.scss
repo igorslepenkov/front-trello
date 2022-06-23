@@ -4,6 +4,7 @@
 
 
 .card {
+	position: relative;
 	width: 100%;
 	padding: 2rem;
 	border: 1px solid black;
@@ -84,5 +85,36 @@
 
 	&--dragged {
 		background: color.$blue;
+	}
+
+	&__nav-buttons {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		column-gap: 80%;
+		margin-top: 1rem;
+
+		.card__forward-button {
+			grid-area: 1 / 2;
+			border: none;
+			outline: none;
+			border-radius: 50%;
+			cursor: pointer;
+
+			&:hover {
+				background-color: color.$lightblue;
+			}
+		}
+	
+		.card__back-button {
+			grid-area: 1 / 1;
+			border: none;
+			outline: none;
+			border-radius: 50%;
+			cursor: pointer;
+
+			&:hover {
+				background-color: color.$lightblue;
+			}
+		}
 	}
 }

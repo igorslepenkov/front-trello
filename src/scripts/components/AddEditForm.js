@@ -4,6 +4,7 @@ import { updateMockApiCard, postMockApiCard } from "../services/mockapi.js";
 import { Card } from "./Card.js";
 import { getDateTime } from "../utils/getDateTime.js";
 import { GLOBAL_CONSTANTS } from "../utils/globalConstants.js";
+import { updateCardCounter } from "./Desk.js";
 
 function AddEditForm(cardToEdit = null) {
   this.getUsersSelectElement = (formElement, users) => {
@@ -51,17 +52,19 @@ function AddEditForm(cardToEdit = null) {
 
     const card = await postMockApiCard(cardData);
     new Card(card).render();
+    this.remove();
+
+    await updateCardCounter();
   };
 
   this.onClick = async ({ target }) => {
     if (target.dataset.action === "cancel") {
-      this.wrapper.remove();
+      this.remove();
     } else if (target.dataset.action === "confirm") {
       if (this.form.name === "edit") {
         await this.editCard(cardToEdit);
       } else if (this.form.name === "add") {
         await this.addCard();
-        this.remove();
       }
     }
   };

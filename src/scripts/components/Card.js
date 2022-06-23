@@ -39,22 +39,122 @@ function Card(cardDataObject) {
     } else if (this.column === GLOBAL_CONSTANTS.COLUMNS.DONE) {
       target.classList.replace(currentClass, "card--complited");
     }
+    this.render();
 
     await updateMockApiCard(this);
+
     await updateCardCounter();
-    this.render();
   };
 
   this.onClick = async ({ target }) => {
     if (target.dataset.action === "delete") {
       this.element.remove();
       await deleteMockApiCard(this);
+      await updateCardCounter();
     } else if (target.dataset.action === "complete") {
       this.column = GLOBAL_CONSTANTS.COLUMNS.DONE;
       await updateMockApiCard(this);
       this.render();
+      await updateCardCounter();
     } else if (target.dataset.action === "edit") {
       new AddEditForm(this);
+    } else if (
+      target.dataset.action === "forward" ||
+      target.parentElement.dataset.action === "forward"
+    ) {
+      await this.moveForward();
+    } else if (
+      target.dataset.action === "back" ||
+      target.parentElement.dataset.action === "back"
+    ) {
+      await this.moveBack();
+    }
+  };
+
+  this.onMouseOver = () => {
+    if (!this.element.querySelector(".card__nav-buttons")) {
+      const navButtons = document.createElement("div");
+      navButtons.classList.add("card__nav-buttons");
+
+      const htmlForwardArrow = '<i class="fa-solid fa-arrow-right"></i>';
+      const htmlBackArrow = '<i class="fa-solid fa-arrow-left"></i>';
+
+      if (this.column === GLOBAL_CONSTANTS.COLUMNS.TODO) {
+        const forwardButton = document.createElement("button");
+        forwardButton.dataset.action = "forward";
+        forwardButton.type = "button";
+        forwardButton.classList.add("card__forward-button");
+
+        forwardButton.insertAdjacentHTML("afterbegin", htmlForwardArrow);
+
+        navButtons.insertAdjacentElement("beforeend", forwardButton);
+        this.element.insertAdjacentElement("beforeend", navButtons);
+      } else if (this.column === GLOBAL_CONSTANTS.COLUMNS.IN_PROGRESS) {
+        const forwardButton = document.createElement("button");
+        const backButton = document.createElement("button");
+
+        forwardButton.classList.add("card__forward-button");
+        forwardButton.dataset.action = "forward";
+        forwardButton.type = "button";
+
+        backButton.classList.add("card__back-button");
+        backButton.dataset.action = "back";
+        backButton.type = "button";
+
+        forwardButton.insertAdjacentHTML("afterbegin", htmlForwardArrow);
+        backButton.insertAdjacentHTML("afterbegin", htmlBackArrow);
+
+        navButtons.insertAdjacentElement("beforeend", backButton);
+        navButtons.insertAdjacentElement("beforeend", forwardButton);
+
+        this.element.insertAdjacentElement("beforeend", navButtons);
+      } else if (this.column === GLOBAL_CONSTANTS.COLUMNS.DONE) {
+        const backButton = document.createElement("button");
+        backButton.dataset.action = "back";
+        backButton.type = "button";
+
+        backButton.classList.add("card__back-button");
+
+        backButton.insertAdjacentHTML("afterbegin", htmlBackArrow);
+
+        navButtons.insertAdjacentElement("beforeend", backButton);
+        this.element.insertAdjacentElement("beforeend", navButtons);
+      }
+    }
+  };
+
+  this.onMouseLeave = () => {
+    if (this.element.querySelector(".card__nav-buttons")) {
+      const navButtons = this.element.querySelector(".card__nav-buttons");
+      navButtons.remove();
+    }
+  };
+
+  this.moveForward = async () => {
+    if (this.column === GLOBAL_CONSTANTS.COLUMNS.TODO) {
+      this.column = GLOBAL_CONSTANTS.COLUMNS.IN_PROGRESS;
+      this.render();
+      await updateMockApiCard(this);
+      await updateCardCounter();
+    } else if (this.column === GLOBAL_CONSTANTS.COLUMNS.IN_PROGRESS) {
+      this.column = GLOBAL_CONSTANTS.COLUMNS.DONE;
+      this.render();
+      await updateMockApiCard(this);
+      await updateCardCounter();
+    }
+  };
+
+  this.moveBack = async () => {
+    if (this.column === GLOBAL_CONSTANTS.COLUMNS.DONE) {
+      this.column = GLOBAL_CONSTANTS.COLUMNS.IN_PROGRESS;
+      this.render();
+      await updateMockApiCard(this);
+      await updateCardCounter();
+    } else if (this.column === GLOBAL_CONSTANTS.COLUMNS.IN_PROGRESS) {
+      this.column = GLOBAL_CONSTANTS.COLUMNS.TODO;
+      this.render();
+      await updateMockApiCard(this);
+      await updateCardCounter();
     }
   };
 
@@ -105,6 +205,8 @@ function Card(cardDataObject) {
     });
     cardElement.addEventListener("dragend", (event) => this.onDragEnd(event));
     cardElement.addEventListener("click", this.onClick);
+    cardElement.addEventListener("mouseover", this.onMouseOver);
+    cardElement.addEventListener("mouseleave", this.onMouseLeave);
 
     this.element = cardElement;
   };

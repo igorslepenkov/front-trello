@@ -1,10 +1,15 @@
+import { removeAllCompletedCards } from "./Desk.js"
+
 function CreateWarningModal(event) {
 	this.modal = null;
-	this.message = "";
+	this.message = "Please, complete current tasks before starting new ones!";
+	console.log(this.message);
 	this.event = event
-	if (this.event.type === "dragend") {
-		this.message = "Please, complete current tasks before starting new ones!";
+	console.log(event.target.id);
+	if (this.event.target.id === "btn-delete-all") {
+		this.message = "All completed task are going to be deleted";
 	}
+	console.log(this.message);
 
 	this.render = () => {
     const container = document.querySelector("#container");
@@ -35,7 +40,10 @@ function CreateWarningModal(event) {
 		confirmBtn.classList.add("modal__button--confirm");
 		confirmBtn.textContent = "Confirm";
 
-		confirmBtn.addEventListener('click', () => {
+		confirmBtn.addEventListener('click', async () => {
+			if (this.event.target.id === "btn-delete-all") {
+				await removeAllCompletedCards();
+			}			
 			this.modal.remove();
 		});
 	
@@ -43,7 +51,9 @@ function CreateWarningModal(event) {
 			this.modal.remove();
 		});
 
-		buttonsContainer.append(cancelBtn, confirmBtn);
+		if (this.event.target.id === "btn-delete-all") {
+			buttonsContainer.append(cancelBtn, confirmBtn);
+		} else 		buttonsContainer.append(confirmBtn);
 		modal.append(title, message, buttonsContainer)
 		container.append(modal)
 

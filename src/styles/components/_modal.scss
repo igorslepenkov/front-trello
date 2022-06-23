@@ -38,11 +38,11 @@
 		cursor: pointer;
 
 		&--cancel {
-			background: color.$blue;
+			background: color.$richblack;
 		}
 
 		&--confirm {
-			background: color.$richblack;
+			background: color.$blue;
 		}
 	}
 }

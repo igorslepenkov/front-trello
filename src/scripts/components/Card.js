@@ -5,9 +5,10 @@ import {
   getTemplateCompletedCardBtn,
 } from "../utils/templates.js";
 import { GLOBAL_CONSTANTS } from "../utils/globalConstants.js";
-import { updateCardCounter } from "./Desk.js";
+import { updateCardCounter, checkInProgressCounter } from "./Desk.js";
 import { deleteMockApiCard, updateMockApiCard } from "../services/mockApi.js";
 import { AddEditForm } from "./AddEditForm.js";
+import { CreateWarningModal } from "./WarningModal.js";
 
 function Card(cardDataObject) {
   this.id = cardDataObject.id || null;
@@ -29,7 +30,11 @@ function Card(cardDataObject) {
     target.dataset.dragged = "false";
     target.classList.remove("card--dragged");
 
-    this.column = event.composedPath()[2].id;
+    if (checkInProgressCounter(event)) {
+			const modal = new CreateWarningModal(event);
+			modal.render();
+			event.stopPropagation();
+		} else this.column = event.composedPath()[2].id;		
 
     const currentClass = target.classList[1];
     if (this.column === GLOBAL_CONSTANTS.COLUMNS.TODO) {
@@ -50,10 +55,11 @@ function Card(cardDataObject) {
     if (target.dataset.action === "delete") {
       this.element.remove();
       await deleteMockApiCard(this);
-      await updateCardCounter();
+			await updateCardCounter()
     } else if (target.dataset.action === "complete") {
       this.column = GLOBAL_CONSTANTS.COLUMNS.DONE;
       await updateMockApiCard(this);
+			await updateCardCounter()
       this.render();
       await updateCardCounter();
     } else if (target.dataset.action === "edit") {

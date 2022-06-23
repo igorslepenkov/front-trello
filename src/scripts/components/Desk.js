@@ -1,10 +1,18 @@
-import { getMockApiCards } from "../services/mockapi.js";
+import { getMockApiCards, deleteMockApiCard } from "../services/mockapi.js";
 import { GLOBAL_CONSTANTS } from "../utils/globalConstants.js";
 import { AddEditForm } from "./AddEditForm.js";
+import { Card } from "./Card.js";
+import { CreateWarningModal } from "./WarningModal.js";
 
 const addBtn = document.querySelector("#btn-add-todo");
 addBtn.addEventListener("click", () => {
   new AddEditForm();
+});
+
+const deleteCompletedBtn = document.querySelector("#btn-delete-all")
+deleteCompletedBtn.addEventListener("click", (event) => {
+	const modal = new CreateWarningModal (event);
+	modal.render();
 });
 
 function enableDrag() {
@@ -73,4 +81,29 @@ const updateCardCounter = async () => {
   counterDone.textContent = done.length;
 };
 
-export { enableDrag, updateCardCounter };
+function checkInProgressCounter (event) {
+	const inProgressCounterValue = document.getElementById(GLOBAL_CONSTANTS.COUNTERS.IN_PROGRESS).textContent;
+	let checkResult = null; 
+	if (event.type === "dragend") {
+		const dropColumn = event.composedPath()[2];
+		checkResult = dropColumn.id === GLOBAL_CONSTANTS.COLUMNS.IN_PROGRESS && inProgressCounterValue >= 6
+	} else {
+		checkResult 
+	}
+	return checkResult
+}
+
+const removeAllCompletedCards = async () => {
+  const cards = await getMockApiCards();
+
+  for (const card of cards) {
+    if (card.column === GLOBAL_CONSTANTS.COLUMNS.DONE) {
+      await deleteMockApiCard(card);
+      const cardElement = document.querySelector(`#card-${card.id}`);
+      cardElement.remove();
+    }
+  }
+  await updateCardCounter();
+};
+
+export { enableDrag, updateCardCounter, checkInProgressCounter, removeAllCompletedCards };
